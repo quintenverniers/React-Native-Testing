@@ -15,7 +15,7 @@ export default class App extends React.Component {
     api.getRovers().then((res) => {
       this.setState({
         rover: res.rovers,
-        roverName: res.rovers[0].name
+        roverName: res.rovers[2].name
       })
     });
   }
