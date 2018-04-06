@@ -6,16 +6,18 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      rover: [], //expect array
-      roverName: ''
+      data: [],
+      city: '',
+      weather: ''
     }
   }
   
   componentDidMount(){
-    api.getRovers().then((res) => {
+    api.getWeather().then((res) => {
       this.setState({
-        rover: res.rovers,
-        roverName: res.rovers[2].name
+        data: res,
+        city: res.name,
+        weather: res.weather[0].description
       })
     });
   }
@@ -27,7 +29,7 @@ export default class App extends React.Component {
           <Text style = {styles.navText}>WeatherAPI</Text>
         </View>
         <View style = {styles.content}>
-          <Text>Rover: {this.state.roverName} </Text>
+          <Text>The weather in {this.state.city} is {this.state.weather} </Text>
         </View>
       </View>
     );
