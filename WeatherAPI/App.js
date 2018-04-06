@@ -13,7 +13,7 @@ export default class App extends React.Component {
   }
   
   componentDidMount(){
-    api.getWeather().then((res) => {
+    api.getWeather('6000','be').then((res) => {
       this.setState({
         data: res,
         city: res.name,
