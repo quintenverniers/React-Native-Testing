@@ -30,12 +30,12 @@ export default class App extends React.Component {
       this.setState({
         dataForecast: res,
         cityForecast: res.city.name,
-        ForecastDay: res.list[0].dt,
+        ForecastDay: res.list[0].dt.toString(),
         weatherForecast: res.list[0].weather[0].description,
       })
     });
-    let epoch = this.state.ForecastDay.toString();
-    api.convertEpochDate(epoch+'').then((res) => {
+    
+    api.convertEpochDate(this.state.ForecastDay).then((res) => {
       this.setState({
         ForecastDate: res.localDate,
       })
