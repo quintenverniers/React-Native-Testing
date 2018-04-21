@@ -12,7 +12,8 @@ export default class App extends React.Component {
       dataForecast: [],
       cityForecast: '',
       ForecastDay: '',
-      weatherForecast:''
+      weatherForecast:'',
+      ForecastDate: ''
     }
   }
   
@@ -33,6 +34,12 @@ export default class App extends React.Component {
         weatherForecast: res.list[0].weather[0].description,
       })
     });
+    let epoch = this.state.ForecastDay.toString();
+    api.convertEpochDate(epoch+'').then((res) => {
+      this.setState({
+        ForecastDate: res.localDate,
+      })
+    })
   }
 
   render() {
@@ -43,7 +50,7 @@ export default class App extends React.Component {
         </View>
         <View style = {styles.content}>
           <Text>The weather in {this.state.cityNow} is {this.state.weatherNow} </Text>
-          <Text>The forecast for {this.state.cityForecast} on {this.state.ForecastDay} is {this.state.weatherForecast}</Text>
+          <Text>The forecast for {this.state.cityForecast} on {this.state.ForecastDate} is {this.state.weatherForecast}</Text>
         </View>
       </View>
     );

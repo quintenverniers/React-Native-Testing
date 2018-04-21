@@ -11,6 +11,13 @@ var api = {
         //var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=Ghent,BE&cnt=10&units=metric&APPID=05bfbf1478a13f5f270d24fba4288943';
         var url = tempUrl;
         return fetch(url).then((res) => res.json());
+    },
+
+    convertEpochDate(epoch){
+        var tempUrl = 'http://www.convert-unix-time.com/api?timestamp='+epoch+'&format=german&timezone=Europe'
+        //var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=Ghent,BE&cnt=10&units=metric&APPID=05bfbf1478a13f5f270d24fba4288943';
+        var url = tempUrl;
+        return fetch(url).then((res) => res.json());
     }
 }
 
