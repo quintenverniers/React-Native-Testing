@@ -7,17 +7,30 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       data: [],
-      city: '',
-      weather: ''
+      cityNow: '',
+      weatherNow: '',
+      dataForecast: [],
+      cityForecast: '',
+      ForecastDay: '',
+      weatherForecast:''
     }
   }
   
   componentDidMount(){
-    api.getWeather('6000','be').then((res) => {
+    api.getWeatherNow('8000','be').then((res) => {
       this.setState({
         data: res,
-        city: res.name,
-        weather: res.weather[0].description
+        cityNow: res.name,
+        weatherNow: res.weather[0].description
+      })
+    });
+    
+    api.getWeatherDays('Ghent','be','10').then((res) => {
+      this.setState({
+        dataForecast: res,
+        cityForecast: res.city.name,
+        ForecastDay: res.list[0].dt,
+        weatherForecast: res.list[0].weather[0].description,
       })
     });
   }
@@ -29,7 +42,8 @@ export default class App extends React.Component {
           <Text style = {styles.navText}>WeatherAPI</Text>
         </View>
         <View style = {styles.content}>
-          <Text>The weather in {this.state.city} is {this.state.weather} </Text>
+          <Text>The weather in {this.state.cityNow} is {this.state.weatherNow} </Text>
+          <Text>The forecast for {this.state.cityForecast} on {this.state.ForecastDay} is {this.state.weatherForecast}</Text>
         </View>
       </View>
     );
