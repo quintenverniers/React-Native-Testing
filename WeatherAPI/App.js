@@ -19,7 +19,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    api.getWeatherNow('8000', 'be').then((res) => {
+    api.getWeatherNow('1000', 'be').then((res) => {
       this.setState({
         data: res,
         cityNow: res.name,
@@ -27,20 +27,20 @@ export default class App extends React.Component {
       })
     });
 
-    api.getWeatherDays('Liege', 'be', '10').then((res) => {
+    api.getWeatherDays('Paris', 'fr', '10').then((res) => {
       this.setState({
         dataForecast: res,
         cityForecast: res.city.name,
-        ForecastDay: res.list[5].dt.toString(),
-        weatherForecast: res.list[5].weather[0].description,
+        ForecastDay: res.list[0].dt.toString(),
+        weatherForecast: res.list[0].weather[0].description,
       })
-      api.convertEpochDate(res.list[5].dt).then((result) => {
+      /*api.convertEpochDate(res.list[0].dt).then((result) => {
         console.warn(this.state.ForecastDay);
         this.setState({
           ForecastDate: result.localDate,
         })
         console.warn(this.state.ForecastDate);
-      });
+      });*/
     });
 
     /*setTimeout(() => {
@@ -57,18 +57,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    /*while (this.state.ForecastDate === '') {
-      return (
-        <View style={styles.container}>
-        <View style={styles.navbar}>
-          <Text style={styles.navText}>WeatherAPI</Text>
-        </View>
-        <View style={styles.content}>
-          <Text>Weather is Loading...</Text>
-        </View>
-      </View>
-      );
-    }*/
     return (
       <View style={styles.container}>
         <View style={styles.navbar}>
@@ -76,7 +64,7 @@ export default class App extends React.Component {
         </View>
         <View style={styles.content}>
           <Text>The weather in {this.state.cityNow} is {this.state.weatherNow} </Text>
-          <Text>The forecast for {this.state.cityForecast} on {this.state.ForecastDate} is {this.state.weatherForecast}</Text>
+          <Text>The forecast for {this.state.cityForecast} on <Timestamp time={this.state.ForecastDay} format='date' component={Text} /> is {this.state.weatherForecast}</Text>
         </View>
       </View>
     );
