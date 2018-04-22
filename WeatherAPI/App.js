@@ -36,9 +36,11 @@ export default class App extends React.Component {
     });
     
     api.convertEpochDate(this.state.ForecastDay).then((res) => {
+      console.warn(this.state.ForecastDay);
       this.setState({
         ForecastDate: res.localDate,
       })
+      console.warn(this.state.ForecastDate);
     })
   }
 
