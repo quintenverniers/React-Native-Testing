@@ -6,16 +6,37 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      data: [],
-      venues: []
+      poolData: [],
+      pools: [],
+      pool: '',
+      poolCheckinCount: '',
+      poolCheckin: '',
+      gymData:[],
+      gyms: [],
+      gym: '',
+      gymCheckinCount: '',
+      gymCheckin: '',
     }
   }
 
   componentDidMount(){
-    api.getPools(Ghent).then((res)=> {
+    api.getPools('Ghent').then((res)=> {
       this.setState({
-        data: res,
-        venues: res.venues
+        poolData: res,
+        pools: res.response.venues,
+        pool: res.response.venues[1].name,
+        poolCheckinCount: res.response.venues[1].hereNow.count,
+        poolCheckin: res.response.venues[1].hereNow.summary
+      })
+    });
+
+    api.getGyms('Ghent').then((res)=> {
+      this.setState({
+        gymData: res,
+        gyms: res.response.venues,
+        gym: res.response.venues[1].name,
+        gymCheckinCount: res.response.venues[1].hereNow.count,
+        gymCheckin: res.response.venues[1].hereNow.summary
       })
     });
   }
@@ -23,9 +44,16 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <View style={styles.pools}>
+          <Text>Zwembad: {this.state.pool}</Text>
+          <Text>There are  {this.state.poolCheckinCount} people at this place.</Text>
+          <Text>This means: {this.state.poolCheckin}</Text>
+        </View>
+        <View>
+          <Text>Fitness: {this.state.gym}</Text>
+          <Text>There are  {this.state.gymCheckinCount} people at this place.</Text>
+          <Text>This means: {this.state.gymCheckin}</Text>
+        </View>
       </View>
     );
   }
@@ -37,5 +65,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  pools: {
+    marginBottom: 20,
   },
 });
