@@ -1,7 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import api from './Helper/Api';
 
 export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      data: [],
+      venues: []
+    }
+  }
+
+  componentDidMount(){
+    api.getPools(Ghent).then((res)=> {
+      this.setState({
+        data: res,
+        venues: res.venues
+      })
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
