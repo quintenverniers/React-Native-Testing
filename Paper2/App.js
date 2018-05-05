@@ -1,14 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StackNavigator, } from 'react-navigation';
+
+import Login from './components/Login';
+import Home from './components/Home';
+import Register from './components/Register';
+
+const AppNavigator = StackNavigator({
+  Login: { screen: Login },
+  Home: { screen: Home },
+  Register: { screen: Register }
+})
 
 export default class App extends React.Component {
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+    return (  
+      <AppNavigator />
     );
   }
 }
@@ -16,8 +24,10 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#00000000',
+    alignSelf: 'stretch',
+    width: null,
+    padding: 20,
   },
 });
