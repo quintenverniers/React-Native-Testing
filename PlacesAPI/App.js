@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import api from './Helper/Api';
 
 export default class App extends React.Component {
@@ -44,7 +44,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.pools}>
+        {/*<View style={styles.pools}>
           <Text>Zwembad: {this.state.pool}</Text>
           <Text>There are  {this.state.poolCheckinCount} people at this place.</Text>
           <Text>This means: {this.state.poolCheckin}</Text>
@@ -53,7 +53,13 @@ export default class App extends React.Component {
           <Text>Fitness: {this.state.gym}</Text>
           <Text>There are  {this.state.gymCheckinCount} people at this place.</Text>
           <Text>This means: {this.state.gymCheckin}</Text>
-        </View>
+        </View>*/}
+        <Text style={styles.venueType}> Gyms:</Text>
+        <FlatList 
+          data={this.state.gyms}
+          keyExtractor={item => item.id}
+          renderItem ={({item}) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
+        />
       </View>
     );
   }
@@ -69,4 +75,16 @@ const styles = StyleSheet.create({
   pools: {
     marginBottom: 20,
   },
+  Item: {
+    marginBottom: 10,
+  },
+  VenueTitle: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  venueType: {
+    fontWeight: 'bold',
+    fontSize: 40,
+    color: 'black',
+  }
 });
