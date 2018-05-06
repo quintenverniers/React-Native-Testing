@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-ionicons';
 import api from './Helper/Api';
 
 export default class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       poolData: [],
@@ -11,7 +12,7 @@ export default class App extends React.Component {
       pool: '',
       poolCheckinCount: '',
       poolCheckin: '',
-      gymData:[],
+      gymData: [],
       gyms: [],
       gym: '',
       gymCheckinCount: '',
@@ -19,7 +20,7 @@ export default class App extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     /*api.getPools('Ghent').then((res)=> {
       this.setState({
         poolData: res,
@@ -30,7 +31,7 @@ export default class App extends React.Component {
       })
     });*/
 
-    api.getGyms('Ghent').then((res)=> {
+    api.getGyms('Ghent').then((res) => {
       this.setState({
         gymData: res,
         gyms: res.response.venues,
@@ -40,6 +41,8 @@ export default class App extends React.Component {
       })
     });
   }
+
+
 
   render() {
     return (
@@ -56,11 +59,14 @@ export default class App extends React.Component {
         </View>*/}
         <Text style={styles.venueType}> Gyms:</Text>
 
-        <FlatList 
+        <FlatList
           data={this.state.gyms}
           keyExtractor={item => item.id}
-          renderItem ={({item}) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
+          renderItem={({ item }) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
         />
+        <View style={styles.bottomNav}>
+          <TouchableOpacity></TouchableOpacity><TouchableOpacity><Icon name='add' /></TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
   Item: {
     marginBottom: 10,
     borderBottomColor: 'gray',
-    borderBottomWidth: 1/2,
+    borderBottomWidth: 1 / 2,
   },
   VenueTitle: {
     fontWeight: 'bold',
@@ -91,5 +97,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'black',
     textAlign: 'center',
-  }
+  },
+  bottomNav: {
+    height: 100,
+  },
 });
