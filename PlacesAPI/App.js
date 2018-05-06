@@ -58,14 +58,13 @@ export default class App extends React.Component {
           <Text>This means: {this.state.gymCheckin}</Text>
         </View>*/}
         <Text style={styles.venueType}> Gyms:</Text>
-
-        <FlatList
+        <FlatList style={styles.list}
           data={this.state.gyms}
           keyExtractor={item => item.id}
           renderItem={({ item }) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
         />
         <View style={styles.bottomNav}>
-          <TouchableOpacity></TouchableOpacity><TouchableOpacity><Icon name='add' /></TouchableOpacity>
+        <TouchableOpacity style={styles.iconGymButton}><Icon name='add' /></TouchableOpacity><TouchableOpacity style={styles.iconPoolButton}><Icon name='add' /></TouchableOpacity>
         </View>
       </View>
     );
@@ -77,6 +76,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
+  },
+  list: {
     paddingLeft: 20,
     paddingRight: 20,
   },
@@ -99,6 +100,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bottomNav: {
-    height: 100,
+    backgroundColor: 'blue',
+    height: 50,
+    flexDirection: 'row',
+  },
+  iconPoolButton: {
+    position: 'absolute',
+    left: 100,
+  },
+  iconGymButton: {
+    position: 'absolute',
+    right: 100,
   },
 });
