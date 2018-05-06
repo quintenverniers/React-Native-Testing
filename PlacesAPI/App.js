@@ -20,7 +20,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
-    api.getPools('Ghent').then((res)=> {
+    /*api.getPools('Ghent').then((res)=> {
       this.setState({
         poolData: res,
         pools: res.response.venues,
@@ -28,7 +28,7 @@ export default class App extends React.Component {
         poolCheckinCount: res.response.venues[1].hereNow.count,
         poolCheckin: res.response.venues[1].hereNow.summary
       })
-    });
+    });*/
 
     api.getGyms('Ghent').then((res)=> {
       this.setState({
@@ -55,6 +55,7 @@ export default class App extends React.Component {
           <Text>This means: {this.state.gymCheckin}</Text>
         </View>*/}
         <Text style={styles.venueType}> Gyms:</Text>
+
         <FlatList 
           data={this.state.gyms}
           keyExtractor={item => item.id}
@@ -69,14 +70,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   pools: {
     marginBottom: 20,
   },
   Item: {
     marginBottom: 10,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1/2,
   },
   VenueTitle: {
     fontWeight: 'bold',
@@ -84,7 +88,8 @@ const styles = StyleSheet.create({
   },
   venueType: {
     fontWeight: 'bold',
-    fontSize: 40,
+    fontSize: 25,
     color: 'black',
+    textAlign: 'center',
   }
 });
