@@ -7,7 +7,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showGyms: false,
+      showGyms: true,
       poolData: [],
       pools: [],
       pool: '',
@@ -57,21 +57,13 @@ export default class App extends React.Component {
       keyExtractor={item => item.id}
       renderItem={({ item }) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
     />
-
-
-
     return (
       <View style={styles.container}>
         <View style={styles.container}>
           <Text style={styles.venueType}> Gyms:</Text>
-          {this.props.showGyms ? poolView : gymView}
-          {/*<FlatList style={styles.list}
-          data={this.state.gyms}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
-      /> */}
+          {this.state.showGyms ? gymView : poolView}
           <View style={styles.bottomNav}>
-            <TouchableOpacity style={styles.iconPoolButton}><Icon name='stopwatch' /></TouchableOpacity><TouchableOpacity style={styles.iconGymButton}><Icon name='water' /></TouchableOpacity>
+            <TouchableOpacity style={styles.iconPoolButton} onPress={() => {this.setState({showGyms: true})}}><Icon name='stopwatch' /></TouchableOpacity><TouchableOpacity style={styles.iconGymButton} onPress={() => {this.setState({showGyms: false})}}><Icon name='water' /></TouchableOpacity>
           </View>
         </View>
 
