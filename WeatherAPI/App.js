@@ -9,6 +9,7 @@ export default class App extends React.Component {
     this.state = {
       data: [],
       cityNow: '',
+      codeNow: '',
       weatherNow: '',
       dataForecast: [],
       cityForecast: '',
@@ -21,39 +22,21 @@ export default class App extends React.Component {
   componentDidMount() {
     api.getWeatherNow('1000', 'be').then((res) => {
       this.setState({
-        data: res,
-        cityNow: res.name,
+        data: res, //data
+        cityNow: res.name, //city name
+        codeNow: res.weather[0].id, //weatherCode
         weatherNow: res.weather[0].description
       })
     });
 
     api.getWeatherDays('Paris', 'fr', '10').then((res) => {
       this.setState({
-        dataForecast: res,
-        cityForecast: res.city.name,
-        ForecastDay: res.list[0].dt.toString(),
-        weatherForecast: res.list[0].weather[0].description,
+        dataForecast: res, //data
+        cityForecast: res.city.name, //city name
+        ForecastDay: res.list[0].dt.toString(), //forecasts
+        weatherForecast: res.list[0].weather[0].description, //beschrijving
       })
-      /*api.convertEpochDate(res.list[0].dt).then((result) => {
-        console.warn(this.state.ForecastDay);
-        this.setState({
-          ForecastDate: result.localDate,
-        })
-        console.warn(this.state.ForecastDate);
-      });*/
     });
-
-    /*setTimeout(() => {
-      api.convertEpochDate(this.state.ForecastDay).then((res) => {
-        console.warn(this.state.ForecastDay);
-        this.setState({
-          ForecastDate: res.localDate,
-        })
-        console.warn(this.state.ForecastDate);
-      });
-    }, 10000);*/
-
-
   }
 
   render() {
@@ -65,6 +48,7 @@ export default class App extends React.Component {
         <View style={styles.content}>
           <Text>The weather in {this.state.cityNow} is {this.state.weatherNow} </Text>
           <Text>The forecast for {this.state.cityForecast} on <Timestamp time={this.state.ForecastDay} format='date' component={Text} /> is {this.state.weatherForecast}</Text>
+          <Text> Weather condition in: {this.state.cityNow} is {this.state.codeNow}</Text>
         </View>
       </View>
     );
