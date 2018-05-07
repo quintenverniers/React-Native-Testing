@@ -7,6 +7,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showGyms: false,
       poolData: [],
       pools: [],
       pool: '',
@@ -21,7 +22,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    /*api.getPools('Ghent').then((res)=> {
+    api.getPools('Ghent').then((res) => {
       this.setState({
         poolData: res,
         pools: res.response.venues,
@@ -29,7 +30,7 @@ export default class App extends React.Component {
         poolCheckinCount: res.response.venues[1].hereNow.count,
         poolCheckin: res.response.venues[1].hereNow.summary
       })
-    });*/
+    });
 
     api.getGyms('Ghent').then((res) => {
       this.setState({
@@ -45,27 +46,35 @@ export default class App extends React.Component {
 
 
   render() {
+    const gymView =
+      <FlatList style={styles.list}
+        data={this.state.gyms}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
+      />
+    const poolView = <FlatList style={styles.list}
+      data={this.state.pools}
+      keyExtractor={item => item.id}
+      renderItem={({ item }) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
+    />
+
+
+
     return (
       <View style={styles.container}>
-        {/*<View style={styles.pools}>
-          <Text>Zwembad: {this.state.pool}</Text>
-          <Text>There are  {this.state.poolCheckinCount} people at this place.</Text>
-          <Text>This means: {this.state.poolCheckin}</Text>
-        </View>
-        <View>
-          <Text>Fitness: {this.state.gym}</Text>
-          <Text>There are  {this.state.gymCheckinCount} people at this place.</Text>
-          <Text>This means: {this.state.gymCheckin}</Text>
-        </View>*/}
-        <Text style={styles.venueType}> Gyms:</Text>
-        <FlatList style={styles.list}
+        <View style={styles.container}>
+          <Text style={styles.venueType}> Gyms:</Text>
+          {this.props.showGyms ? poolView : gymView}
+          {/*<FlatList style={styles.list}
           data={this.state.gyms}
           keyExtractor={item => item.id}
           renderItem={({ item }) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
-        />
-        <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.iconGymButton}><Icon name='add' /></TouchableOpacity><TouchableOpacity style={styles.iconPoolButton}><Icon name='add' /></TouchableOpacity>
+      /> */}
+          <View style={styles.bottomNav}>
+            <TouchableOpacity style={styles.iconPoolButton}><Icon name='stopwatch' /></TouchableOpacity><TouchableOpacity style={styles.iconGymButton}><Icon name='water' /></TouchableOpacity>
+          </View>
         </View>
+
       </View>
     );
   }
@@ -74,7 +83,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#fdfdfd',
     justifyContent: 'center',
   },
   list: {
@@ -100,15 +109,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bottomNav: {
-    backgroundColor: 'blue',
+    backgroundColor: '#fff',
     height: 50,
     flexDirection: 'row',
   },
   iconPoolButton: {
+    marginTop: 10,
     position: 'absolute',
     left: 100,
   },
   iconGymButton: {
+    marginTop: 10,
     position: 'absolute',
     right: 100,
   },
