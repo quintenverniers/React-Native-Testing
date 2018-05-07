@@ -8,6 +8,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       showGyms: true,
+      venueType: 'Gyms',
       poolData: [],
       pools: [],
       pool: '',
@@ -60,10 +61,10 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.container}>
-          <Text style={styles.venueType}> Gyms:</Text>
+          <Text style={styles.venueType}>{this.state.venueType}</Text>
           {this.state.showGyms ? gymView : poolView}
           <View style={styles.bottomNav}>
-            <TouchableOpacity style={styles.iconPoolButton} onPress={() => {this.setState({showGyms: true})}}><Icon name='stopwatch' /></TouchableOpacity><TouchableOpacity style={styles.iconGymButton} onPress={() => {this.setState({showGyms: false})}}><Icon name='water' /></TouchableOpacity>
+            <TouchableOpacity style={styles.iconPoolButton} onPress={() => {this.setState({showGyms: true, venueType: 'Gyms'})}}><Icon name='stopwatch' /></TouchableOpacity><TouchableOpacity style={styles.iconGymButton} onPress={() => {this.setState({showGyms: false, venueType: 'Pools'})}}><Icon name='water' /></TouchableOpacity>
           </View>
         </View>
 
