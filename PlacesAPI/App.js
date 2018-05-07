@@ -90,20 +90,20 @@ const styles = StyleSheet.create({
   },
   toolbar: {
     justifyContent: 'center',
-    height: 50,
+    height: 55,
     backgroundColor: 'red',
     flexDirection: 'row',
   },
   toolbarIcon: {
     position: 'absolute',
     left: 12,
-    top: 8,
+    top: 9,
     color : 'white',
   },
   toolbarText: {
     position: 'absolute',
     left: 50,
-    top: 5,
+    top: 6,
     color: 'white',
     fontSize: 25,
     fontWeight: 'bold',
