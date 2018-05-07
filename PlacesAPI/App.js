@@ -61,10 +61,14 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar
-          backgroundColor="red"
-          barStyle="dark-content"
+          backgroundColor="#db0000"
+          barStyle="light-content"
           hidden={false}
         />
+        <View style={styles.toolbar}>
+          <Icon name='menu' style={styles.toolbarIcon}/>
+          <Text style={styles.toolbarText}>Location picker</Text>
+        </View>
         <View style={styles.container}>
           <Text style={styles.venueType}>{this.state.venueType}</Text>
           {this.state.showGyms ? gymView : poolView}
@@ -83,6 +87,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fdfdfd',
     justifyContent: 'center',
+  },
+  toolbar: {
+    justifyContent: 'center',
+    height: 50,
+    backgroundColor: 'red',
+    flexDirection: 'row',
+  },
+  toolbarIcon: {
+    position: 'absolute',
+    left: 12,
+    top: 8,
+    color : 'white',
+  },
+  toolbarText: {
+    position: 'absolute',
+    left: 50,
+    top: 5,
+    color: 'white',
+    fontSize: 25,
+    fontWeight: 'bold',
   },
   list: {
     paddingLeft: 20,
