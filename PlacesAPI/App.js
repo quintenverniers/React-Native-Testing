@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, StatusBar } from 'react-native';
 import Icon from 'react-native-ionicons';
 import api from './Helper/Api';
 
@@ -60,11 +60,16 @@ export default class App extends React.Component {
     />
     return (
       <View style={styles.container}>
+        <StatusBar
+          backgroundColor="red"
+          barStyle="dark-content"
+          hidden={false}
+        />
         <View style={styles.container}>
           <Text style={styles.venueType}>{this.state.venueType}</Text>
           {this.state.showGyms ? gymView : poolView}
           <View style={styles.bottomNav}>
-            <TouchableOpacity style={styles.iconPoolButton} onPress={() => {this.setState({showGyms: true, venueType: 'Gyms'})}}><Icon name='stopwatch' /></TouchableOpacity><TouchableOpacity style={styles.iconGymButton} onPress={() => {this.setState({showGyms: false, venueType: 'Pools'})}}><Icon name='water' /></TouchableOpacity>
+            <TouchableOpacity style={styles.iconPoolButton} onPress={() => { this.setState({ showGyms: true, venueType: 'Gyms' }) }}><Icon name='stopwatch' /></TouchableOpacity><TouchableOpacity style={styles.iconGymButton} onPress={() => { this.setState({ showGyms: false, venueType: 'Pools' }) }}><Icon name='water' /></TouchableOpacity>
           </View>
         </View>
 
