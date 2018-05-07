@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default class Planning extends React.Component {
     static navigationOptions = {
-        headerVisible: false,
+        header: null,
     }
     render() {
         return (
