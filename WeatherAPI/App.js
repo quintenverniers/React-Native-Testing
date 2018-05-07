@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Timestamp from 'react-timestamp';
 import api from './utilities/api';
 
@@ -59,11 +59,6 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar
-          backgroundColor="blue"
-          barStyle="light-content"
-          hidden={false}
-        />
         <View style={styles.navbar}>
           <Text style={styles.navText}>WeatherAPI</Text>
         </View>
