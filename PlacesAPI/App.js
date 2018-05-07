@@ -23,7 +23,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    api.getPools('Ghent').then((res) => {
+    api.getPools('Antwerp').then((res) => {
       this.setState({
         poolData: res,
         pools: res.response.venues,
@@ -33,7 +33,7 @@ export default class App extends React.Component {
       })
     });
 
-    api.getGyms('Ghent').then((res) => {
+    api.getGyms('Antwerp').then((res) => {
       this.setState({
         gymData: res,
         gyms: res.response.venues,
