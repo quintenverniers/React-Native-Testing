@@ -7,6 +7,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      GymActive: 'black',
+      PoolActive: 'gray',
       showGyms: true,
       venueType: 'Gyms',
       poolData: [],
@@ -73,7 +75,7 @@ export default class App extends React.Component {
           <Text style={styles.venueType}>{this.state.venueType}</Text>
           {this.state.showGyms ? gymView : poolView}
           <View style={styles.bottomNav}>
-            <TouchableOpacity style={styles.iconPoolButton} onPress={() => { this.setState({ showGyms: true, venueType: 'Gyms' }) }}><Icon name='stopwatch' /></TouchableOpacity><TouchableOpacity style={styles.iconGymButton} onPress={() => { this.setState({ showGyms: false, venueType: 'Pools' }) }}><Icon name='water' /></TouchableOpacity>
+            <TouchableOpacity style={styles.iconGymButton} onPress={() => { this.setState({ showGyms: true, venueType: 'Gyms', GymActive: 'black', PoolActive: 'gray' }) }}><Icon name='stopwatch' style={[{color: this.state.GymActive}]}/></TouchableOpacity><TouchableOpacity style={styles.iconPoolButton} onPress={() => { this.setState({ showGyms: false, venueType: 'Pools', GymActive: 'gray', PoolActive: 'black' }) }}><Icon name='water' style={[{color: this.state.PoolActive}]}/></TouchableOpacity>
           </View>
         </View>
 
@@ -135,12 +137,12 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
   },
-  iconPoolButton: {
+  iconGymButton: {
     marginTop: 10,
     position: 'absolute',
     left: 100,
   },
-  iconGymButton: {
+  iconPoolButton: {
     marginTop: 10,
     position: 'absolute',
     right: 100,
