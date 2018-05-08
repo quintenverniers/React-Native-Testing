@@ -13,10 +13,11 @@ export default class Dashboard extends React.Component {
 
     constructor() {
         super();
-        this.state = {
-            sportMoments: [{"id" : "1", "moment" : {"sport": "Running", "time": "13:00-14:00" }},{"id" : "2", "moment" : {"sport": "Fitness", "time": "16:00-18:00" }}],
+        this.setState = {
+            sportMoments: [{ "id": "1", "moment": { "sport": "Running", "time": "13:00-14:00" } }, { "id": "2", "moment": { "sport": "Fitness", "time": "16:00-18:00" } }],
         }
     }
+    
     render() {
         return (
             <View style={styles.container}>
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         paddingRight: 5,
         paddingBottom: 2,
-        borderWidth: 1/2,
+        borderWidth: 1 / 2,
         borderLeftColor: 'red',
         borderLeftWidth: 5,
     },

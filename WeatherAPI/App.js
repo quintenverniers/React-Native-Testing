@@ -20,7 +20,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    api.getWeatherNow('1000', 'be').then((res) => {
+    api.getWeatherNow('9000', 'be').then((res) => {
       this.setState({
         data: res, //data
         cityNow: res.name, //city name
@@ -29,7 +29,7 @@ export default class App extends React.Component {
       })
     });
 
-    api.getWeatherDays('Paris', 'fr', '10').then((res) => {
+    api.getWeatherDays('Ghent', 'be', '10').then((res) => {
       this.setState({
         dataForecast: res, //data
         cityForecast: res.city.name, //city name
