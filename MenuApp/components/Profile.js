@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Icon from 'react-native-ionicons';
 
 export default class Profile extends React.Component {
@@ -13,6 +13,11 @@ export default class Profile extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar
+                    backgroundColor="#db0000"
+                    barStyle="light-content"
+                    hidden={false}
+                />
                 <View style={styles.toolBar}>
                     <Icon name="menu" onPress={() => this.props.navigation.toggleDrawer()} style={styles.menuIcon} /><Text style={styles.toolbarText}>Profile</Text>
                 </View>

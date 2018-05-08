@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Icon from 'react-native-ionicons';
 
 export default class Dashboard extends React.Component {
@@ -7,14 +7,19 @@ export default class Dashboard extends React.Component {
         header: null,
         drawerLabel: 'Dashboard',
         drawerIcon: () => (
-            <Icon  name="home" />
+            <Icon name="home" />
         ),
     };
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar
+                    backgroundColor="#db0000"
+                    barStyle="light-content"
+                    hidden={false}
+                />
                 <View style={styles.toolBar}>
-                    <Icon name="menu" onPress={() => this.props.navigation.toggleDrawer()}style={styles.menuIcon}/><Text style={styles.toolbarText}>Dashboard</Text>
+                    <Icon name="menu" onPress={() => this.props.navigation.toggleDrawer()} style={styles.menuIcon} /><Text style={styles.toolbarText}>Dashboard</Text>
                 </View>
                 <Text>Dashboard screen!</Text>
             </View>
@@ -26,7 +31,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        
+
     },
     toolBar: {
         height: 60,
