@@ -13,12 +13,13 @@ export default class Dashboard extends React.Component {
 
     constructor() {
         super();
-        this.setState = {
-            sportMoments: [{ "id": "1", "moment": { "sport": "Running", "time": "13:00-14:00" } }, { "id": "2", "moment": { "sport": "Fitness", "time": "16:00-18:00" } }],
+        this.state = {
         }
     }
     
     render() {
+        // berekening in Helper
+        var sportMoments = [{ "id": "1", "moment": { "sport": "Running", "time": "13:00-14:00" } }, { "id": "2", "moment": { "sport": "Fitness", "time": "16:00-18:00" }},{ "id": "3", "moment": { "sport": "Swimming", "time": "11:00-12:00" } }];        
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -30,7 +31,7 @@ export default class Dashboard extends React.Component {
                     <Icon name="menu" onPress={() => this.props.navigation.toggleDrawer()} style={styles.menuIcon} /><Text style={styles.toolbarText}>Dashboard</Text>
                 </View>
                 <FlatList style={styles.list}
-                    data={this.state.sportMoments}
+                    data={sportMoments}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) => <View style={styles.sportItem}><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View>}
                 />
