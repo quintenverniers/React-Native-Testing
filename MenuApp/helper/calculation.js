@@ -1,6 +1,6 @@
-let running = true;
-let swimming = true;
-let fitness = false;
+let running = false;
+let swimming = false;
+let fitness = true;
 export const getSportMoment = () => {
     // berekening in Helper
     let sportMoments = [];
