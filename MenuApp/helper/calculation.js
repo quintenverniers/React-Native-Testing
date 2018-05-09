@@ -1,18 +1,20 @@
-let running = false;
+let running = true;
 let swimming = false;
 let fitness = true;
+let weatherCode = 502;
 export const getSportMoment = () => {
     // berekening in Helper
     let sportMoments = [];
     if (running) {
-        if (sportMoments.length > 0) {
-            let sportMomentID = parseInt(sportMoments[sportMoments.length - 1].id) + 1;
-            sportMoments.push({ "id": sportMomentID, "moment": { "sport": "Running", "time": "08:00-12:00" } });
-        } else {
-            sportMoments.push({ "id": "1", "moment": { "sport": "Running", "time": "08:00-12:00" } });
-        }
+        if (weatherCode == 500 || weatherCode == 501 || (weatherCode >= 800 && weatherCode <= 804))
+            if (sportMoments.length > 0) {
+                let sportMomentID = parseInt(sportMoments[sportMoments.length - 1].id) + 1;
+                sportMoments.push({ "id": sportMomentID, "moment": { "sport": "Running", "time": "08:00-12:00" } });
+            } else {
+                sportMoments.push({ "id": "1", "moment": { "sport": "Running", "time": "08:00-12:00" } });
+            }
     }
-    if (swimming){
+    if (swimming) {
         if (sportMoments.length > 0) {
             let sportMomentID = parseInt(sportMoments[sportMoments.length - 1].id) + 1;
             sportMoments.push({ "id": sportMomentID, "moment": { "sport": "Swimming", "time": "08:00-12:00" } });
@@ -20,7 +22,7 @@ export const getSportMoment = () => {
             sportMoments.push({ "id": "1", "moment": { "sport": "Swimming", "time": "08:00-12:00" } });
         }
     }
-    if (fitness){
+    if (fitness) {
         if (sportMoments.length > 0) {
             let sportMomentID = parseInt(sportMoments[sportMoments.length - 1].id) + 1;
             sportMoments.push({ "id": sportMomentID, "moment": { "sport": "Fitness", "time": "08:00-12:00" } });
