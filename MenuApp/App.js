@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { StackNavigator, DrawerItems, DrawerNavigator } from 'react-navigation';
 import Icon from 'react-native-ionicons';
 import Dashboard from './components/Dashboard.js';
@@ -9,18 +9,7 @@ import About from './components/About.js';
 
 const DrawerContent = (props) => (
   <View>
-    <View
-      style={{
-        backgroundColor: '#f50057',
-        height: 140,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Text style={{ color: 'white', fontSize: 30 }}>
-        Header
-      </Text>
-    </View>
+    <Image source={require('./assets/HeaderImageRed.jpg')} style={{height: 140}}/>
     <DrawerItems {...props} />
   </View>
 )

@@ -40,8 +40,9 @@ const styles = StyleSheet.create({
     menuIcon: {
         position: 'absolute',
         left: 10,
-        top: 12,
+        top: 10,
         color: 'white',
+        fontSize: 35,
     },
     toolbarText: {
         position: 'absolute',

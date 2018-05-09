@@ -33,7 +33,7 @@ export default class Dashboard extends React.Component {
                 <FlatList style={styles.list}
                     data={sportMoments}
                     keyExtractor={item => item.id}
-                    renderItem={({ item }) => <View style={styles.sportItem}><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View>}
+                    renderItem={({ item }) => <View style={styles.sportItem}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{color: '#000', fontSize: 40}} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View></View>}
                 />
             </View>
         );
@@ -54,8 +54,9 @@ const styles = StyleSheet.create({
     menuIcon: {
         position: 'absolute',
         left: 10,
-        top: 12,
+        top: 10,
         color: 'white',
+        fontSize: 35,
     },
     toolbarText: {
         position: 'absolute',
@@ -74,6 +75,11 @@ const styles = StyleSheet.create({
         borderWidth: 1 / 2,
         borderLeftColor: 'red',
         borderLeftWidth: 5,
+        flexDirection: 'row',
+    },
+    sportItemIconWrapper: {
+        marginTop: 6,
+        paddingRight: 10,
     },
     momentTitle: {
         color: 'black',
