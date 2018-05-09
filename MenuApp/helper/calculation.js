@@ -1,9 +1,19 @@
-let running = true;
-let swimming = false;
-let fitness = true;
-let weatherCode = 502;
+// Calculation variables 
+//sports
+let running = true; //if the user is a runner
+let swimming = false; //if user goes swimming
+let fitness = true; //if the user goes to the gym
+
+//weather
+let weatherCode = 502; //weather code
+
+//location info
+let gymID = '0'; //foursquare ID of the chosen gym location
+let poolID = '1'; //foursquare ID of the chosen pool location
+let gymCheckinCount = 0; //amount of people currently at the gym
+let poolCheckinCount = 0; //amount of people currently at the pool
+
 export const getSportMoment = () => {
-    // berekening in Helper
     let sportMoments = [];
     if (running) {
         if (weatherCode == 500 || weatherCode == 501 || (weatherCode >= 800 && weatherCode <= 804))
