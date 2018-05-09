@@ -19,7 +19,11 @@ export default class Dashboard extends React.Component {
     
     render() {
         // berekening in Helper
-        var sportMoments = [{ "id": "1", "moment": { "sport": "Running", "time": "13:00-14:00" }}, { "id": "2", "moment": { "sport": "Fitness", "time": "16:00-18:00" }},{ "id": "3", "moment": { "sport": "Swimming", "time": "11:00-12:00" } }];        
+        var sportMoments = [{ "id": "1", "moment": { "sport": "Running", "time": "13:00-14:00" }}, { "id": "2", "moment": { "sport": "Fitness", "time": "16:00-18:00" }},{ "id": "3", "moment": { "sport": "Swimming", "time": "11:00-12:00" }}];        
+        //{ "id": "4", "moment": { "sport": "Running", "time": "13:00-14:00" }}
+        sportMoments.push({ "id": "4", "moment": { "sport": "Running", "time": "08:00-12:00" }});
+        
+
         return (
             <View style={styles.container}>
                 <StatusBar

@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard.js';
 import Profile from './components/Profile.js';
 import Planning from './components/Planning.js';
 import About from './components/About.js';
+import Logout from './components/Logout.js';
 
 const DrawerContent = (props) => (
   <View>
@@ -18,7 +19,8 @@ const AppNavigator = DrawerNavigator({
   Dashboard: { screen: Dashboard },
   Profile: { screen: Profile },
   Planning: { screen: Planning },
-  About: { screen: About }
+  About: { screen: About },
+  Logout: {screen: Logout}
 },
   {
     contentComponent: DrawerContent,
