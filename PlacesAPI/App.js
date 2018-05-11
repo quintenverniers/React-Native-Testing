@@ -21,6 +21,7 @@ export default class App extends React.Component {
       gym: '',
       gymCheckinCount: '',
       gymCheckin: '',
+      hereNow: '',
     }
   }
 
@@ -42,6 +43,12 @@ export default class App extends React.Component {
         gym: res.response.venues[1].name,
         gymCheckinCount: res.response.venues[1].hereNow.count,
         gymCheckin: res.response.venues[1].hereNow.summary
+      })
+    });
+
+    api.getHereNow('575ef2e9498e19229bfc0df8').then((res) => {
+      this.setState({
+        hereNow: res.response.hereNow.count,
       })
     });
   }
@@ -78,7 +85,7 @@ export default class App extends React.Component {
             <TouchableOpacity style={styles.iconGymButton} onPress={() => { this.setState({ showGyms: true, venueType: 'Gyms', GymActive: 'black', PoolActive: 'gray' }) }}><Icon name='stopwatch' style={[{color: this.state.GymActive}]}/></TouchableOpacity><TouchableOpacity style={styles.iconPoolButton} onPress={() => { this.setState({ showGyms: false, venueType: 'Pools', GymActive: 'gray', PoolActive: 'black' }) }}><Icon name='water' style={[{color: this.state.PoolActive}]}/></TouchableOpacity>
           </View>
         </View>
-
+        <Text>Number of people in gym: {this.state.hereNow}</Text>
       </View>
     );
   }

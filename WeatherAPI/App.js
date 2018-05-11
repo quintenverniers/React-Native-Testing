@@ -20,7 +20,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    api.getWeatherNow('9000', 'be').then((res) => {
+    api.getWeatherNow('Ghent', 'be').then((res) => {
       this.setState({
         data: res, //data
         cityNow: res.name, //city name
@@ -28,7 +28,9 @@ export default class App extends React.Component {
         weatherNow: res.weather[0].description
       })
     });
-
+    
+    //16 day weather forecast not needed.
+  /*
     api.getWeatherDays('Ghent', 'be', '10').then((res) => {
       this.setState({
         dataForecast: res, //data
@@ -36,7 +38,7 @@ export default class App extends React.Component {
         ForecastDay: res.list[0].dt.toString(), //forecasts
         weatherForecast: res.list[0].weather[0].description, //beschrijving
       })
-    });
+    });*/
   }
 
   render() {
@@ -47,7 +49,7 @@ export default class App extends React.Component {
         </View>
         <View style={styles.content}>
           <Text>The weather in {this.state.cityNow} is {this.state.weatherNow} </Text>
-          <Text>The forecast for {this.state.cityForecast} on <Timestamp time={this.state.ForecastDay} format='date' component={Text} /> is {this.state.weatherForecast}</Text>
+          {/*<Text>The forecast for {this.state.cityForecast} on <Timestamp time={this.state.ForecastDay} format='date' component={Text} /> is {this.state.weatherForecast}</Text>*/}
           <Text> Weather condition in: {this.state.cityNow} is {this.state.codeNow}</Text>
         </View>
       </View>

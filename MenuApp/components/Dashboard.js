@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar, FlatList } from 'react-native';
 import Icon from 'react-native-ionicons';
-import {getSportMoment} from '../helper/calculation.js';
+import { getSportMoment } from '../helper/calculation.js';
+import weather from '../helper/weather.js';
+import places from '../helper/places.js';
 
 export default class Dashboard extends React.Component {
     static navigationOptions = {
@@ -15,14 +17,43 @@ export default class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
+            currentCity: '',
+            currentCountry: '',
+            city: '',
+            code: '',
+            GymHereNow: '',
+            PoolHereNow: '',
         }
     }
-    
+
+    componentDidMount() {
+        //Get weather from current location (city+countrycode)
+        weather.getWeatherNow('Ghent', 'be').then((res) => {
+            this.setState({
+                city: res.name, //city name
+                code: res.weather[0].id, //weather code
+            })
+        });
+        //get current people at gym
+        places.getHereNowGym('575ef2e9498e19229bfc0df8').then((res) => {
+            this.setState({
+                GymHereNow: res.response.hereNow.count,
+            })
+        });
+        //get current people at pool
+        places.getHereNowPool('575ef2e9498e19229bfc0df8').then((res) => {
+            this.setState({
+                GymHereNow: res.response.hereNow.count,
+            })
+        });
+    }
+
     render() {
+        let weatherCode = this.state.code;
         // calculation in Helper
-        var sportMoments = getSportMoment();
-        
-        
+        var sportMoments = getSportMoment(weatherCode,this.state.GymHereNow, this.state.PoolHereNow);
+
+
 
         return (
             <View style={styles.container}>
@@ -36,8 +67,8 @@ export default class Dashboard extends React.Component {
                 </View>
                 <FlatList style={styles.list}
                     data={sportMoments}
-                    keyExtractor={item => item.id}
-                    renderItem={({ item }) => <View style={styles.sportItem}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{color: '#000', fontSize: 40}} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time} {item.id}</Text></View></View>}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({ item }) => <View style={styles.sportItem}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time} {item.id}</Text></View></View>}
                 />
             </View>
         );
