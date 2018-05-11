@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar, FlatList } from 'react-native';
 import Icon from 'react-native-ionicons';
-import { getSportMoment } from '../helper/calculation.js';
 import weather from '../helper/weather.js';
 import places from '../helper/places.js';
+import { getSportMoment } from '../helper/calculation.js';
 
 export default class Dashboard extends React.Component {
     static navigationOptions = {
@@ -19,39 +19,62 @@ export default class Dashboard extends React.Component {
         this.state = {
             currentCity: '',
             currentCountry: '',
-            city: '',
-            code: '',
-            GymHereNow: '',
-            PoolHereNow: '',
+            running: true,
+            swimming: true,
+            fitness: true,
+            weatherCode: '',
+            gymCount: '',
+            poolCount: '',
         }
     }
 
     componentDidMount() {
-        //Get weather from current location (city+countrycode)
-        weather.getWeatherNow('Ghent', 'be').then((res) => {
-            this.setState({
-                city: res.name, //city name
-                code: res.weather[0].id, //weather code
-            })
-        });
-        //get current people at gym
-        places.getHereNowGym('575ef2e9498e19229bfc0df8').then((res) => {
-            this.setState({
-                GymHereNow: res.response.hereNow.count,
-            })
-        });
-        //get current people at pool
-        places.getHereNowPool('575ef2e9498e19229bfc0df8').then((res) => {
-            this.setState({
-                GymHereNow: res.response.hereNow.count,
-            })
-        });
+        if (this.state.running) {
+            //get location:
+
+            //get real weather code
+            weather.getWeatherNow('Ghent', 'be').then((res) => {
+                this.setState({
+                    weatherCode: res.weather[0].id, //weather code
+                })
+            });
+        }
+        if (this.state.swimming) {
+            //get pool from db
+            //in firebase "then clause --> set poolID to value from db"
+            poolID = 0;
+            //get amount of people at this venue
+            places.getHereNowPool(poolID).then((res) => {
+                this.setState({
+                    poolCount: res.response.hereNow.count,
+                })
+            });
+        }
+        if (this.state.fitness) {
+            //get gym from db
+            //in firebase "then clause --> set poolID to value from db"
+            gymID = 0;
+            places.getHereNowGym(gymID).then((res) => {
+                this.setState({
+                    gymCount: res.response.hereNow.count,
+                })
+            });
+            //get amount of people at this venue
+        }
     }
 
     render() {
-        let weatherCode = this.state.code;
+        /*//sports --- Get these variable from the database
+        let running = true; 
+        let swimming = true; 
+        let fitness = true;
+        //sports variables
+        let weatherCode = 500;
+        let gymCount = 50;
+        let poolCount = 50;*/
+
         // calculation in Helper
-        var sportMoments = getSportMoment(weatherCode,this.state.GymHereNow, this.state.PoolHereNow);
+        var sportMoments = getSportMoment(this.state.running, this.state.weatherCode, this.state.fitness, this.state.gymCount, this.state.swimming, this.state.poolCount);
 
 
 
@@ -65,10 +88,17 @@ export default class Dashboard extends React.Component {
                 <View style={styles.toolBar}>
                     <Icon name="menu" onPress={() => this.props.navigation.toggleDrawer()} style={styles.menuIcon} /><Text style={styles.toolbarText}>Dashboard</Text>
                 </View>
+
                 <FlatList style={styles.list}
                     data={sportMoments}
                     keyExtractor={item => item.id.toString()}
-                    renderItem={({ item }) => <View style={styles.sportItem}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time} {item.id}</Text></View></View>}
+                    renderItem={({ item }) => {
+                        if (item.moment.sport == "Running"){ return <View style={[styles.sportItem,styles.runningItem]}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View></View> }
+                        else if (item.moment.sport == "Swimming"){ return <View style={[styles.sportItem,styles.swimmingItem]}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View></View> }
+                        else {
+                            return <View style={[styles.sportItem,styles.fitnessItem]}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View></View>
+                        }
+                    }}
                 />
             </View>
         );
@@ -79,7 +109,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-
     },
     toolBar: {
         height: 60,
@@ -108,9 +137,19 @@ const styles = StyleSheet.create({
         paddingRight: 5,
         paddingBottom: 2,
         borderWidth: 1 / 2,
+        flexDirection: 'row',
+    },
+    runningItem: {
         borderLeftColor: 'red',
         borderLeftWidth: 5,
-        flexDirection: 'row',
+    },
+    swimmingItem: {
+        borderLeftColor: 'blue',
+        borderLeftWidth: 5,
+    },
+    fitnessItem: {
+        borderLeftColor: 'green',
+        borderLeftWidth: 5,
     },
     sportItemIconWrapper: {
         marginTop: 6,
@@ -118,6 +157,7 @@ const styles = StyleSheet.create({
     },
     momentTitle: {
         color: 'black',
+        fontWeight: '500',
         fontSize: 25,
     },
     momentTime: {
