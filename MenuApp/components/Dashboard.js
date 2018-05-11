@@ -108,7 +108,7 @@ export default class Dashboard extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f4f4f4',
     },
     toolBar: {
         height: 60,
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
     },
     sportItem: {
+        backgroundColor: '#fff',
         marginTop: 5,
         marginLeft: 3,
         marginRight: 3,
