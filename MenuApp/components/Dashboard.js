@@ -64,15 +64,6 @@ export default class Dashboard extends React.Component {
     }
 
     render() {
-        /*//sports --- Get these variable from the database
-        let running = true; 
-        let swimming = true; 
-        let fitness = true;
-        //sports variables
-        let weatherCode = 500;
-        let gymCount = 50;
-        let poolCount = 50;*/
-
         // calculation in Helper
         var sportMoments = getSportMoment(this.state.running, this.state.weatherCode, this.state.fitness, this.state.gymCount, this.state.swimming, this.state.poolCount);
 

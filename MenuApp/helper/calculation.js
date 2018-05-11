@@ -60,7 +60,6 @@ export const getSportMoment = (running, weatherCode, fitness, gymCount, swimming
             }
         }
     }
-
     if (swimming && poolCount < 999) {
         if (poolCount <= 50) {
             if (sportMoments.length > 0) {
@@ -72,10 +71,6 @@ export const getSportMoment = (running, weatherCode, fitness, gymCount, swimming
         }
     }
     if (fitness && gymCount < 999) {
-        //get gym from database
-
-        //get amount of people at the gym
-
         if (gymCount <= 50) {
             if (sportMoments.length > 0) {
                 let sportMomentID = parseInt(sportMoments[sportMoments.length - 1].id) + 1;
