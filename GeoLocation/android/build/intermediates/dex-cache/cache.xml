@@ -12,6 +12,87 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/quinten/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_2742947e76a7ecb3add8076a7b4182980a1ad8db.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_199c7feebd4de62557a70c3d0ba808b031cf5efa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_fdaf3a7a9a9a8a24b232fa7764d0358ff334af2c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_402a11ccc9fa41a0955875b59d11e50966d70004.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_aab7f7a77a1ec116aa470956067ce090ed854c9e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_577e856672c75ff008dcba385d1c71f462cb9e94.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e31331bdf6b5952badadbfc171f04b95c55d3b16">
+        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.55.4_d71fc9e4d5384d1ded75568cda9d0d2020a07106.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_d96b7144cef4bbe490981636e197bd342cb09db9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/quinten/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_6ad2d28e83541d667ff29ec901595918c0b1bc81.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/quinten/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
         jumboMode="false"
         optimize="true"
@@ -48,30 +129,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/quinten/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
-        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_2742947e76a7ecb3add8076a7b4182980a1ad8db.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
         <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.0.1_ebd26f2fe15ddb6a8fdbff8d6d07bce3a8a351eb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
-        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_199c7feebd4de62557a70c3d0ba808b031cf5efa.jar" />
     </item>
     <item
         is-multidex="false"
@@ -102,66 +165,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
-        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_fdaf3a7a9a9a8a24b232fa7764d0358ff334af2c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
-        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_402a11ccc9fa41a0955875b59d11e50966d70004.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
         <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1_afa0ab69e7e1b7d1380de75529bb27c3b9420278.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
-        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_aab7f7a77a1ec116aa470956067ce090ed854c9e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="e31331bdf6b5952badadbfc171f04b95c55d3b16">
-        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.55.4_d71fc9e4d5384d1ded75568cda9d0d2020a07106.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
-        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_577e856672c75ff008dcba385d1c71f462cb9e94.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
-        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_d96b7144cef4bbe490981636e197bd342cb09db9.jar" />
     </item>
     <item
         is-multidex="false"
@@ -180,15 +189,6 @@
         revision="23.0.1"
         sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
         <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_3e4466fa0fd01bbf7ec19240ab59475a3ea7854a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/quinten/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
-        <dex dex="/Volumes/Media Drive/School/2017-2018/Semester-2/Project_1/React-Native Projects/React-Native-Testing/GeoLocation/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_6ad2d28e83541d667ff29ec901595918c0b1bc81.jar" />
     </item>
 
 </items>
