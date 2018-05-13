@@ -1,7 +1,27 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, StatusBar, PermissionsAndroid } from 'react-native';
 import Icon from 'react-native-ionicons';
 import api from './Helper/Api';
+
+async function requestLocationPermission() {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        'title': 'Simplex location permission',
+        'message': 'Simplex needs access to your location' +
+          'to show you relevant info regarding your location.'
+      }
+    )
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.warn("You can use the camera")
+    } else {
+      console.warn("Camera permission denied")
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+}
 
 export default class App extends React.Component {
   constructor(props) {
@@ -29,12 +49,26 @@ export default class App extends React.Component {
       venue: '',
       venueCheckinCount:'',
       venueCheckin:'',
+      longitude: 0,
+      latitude: 0,
 
     }
   }
 
   getVenues(location,categoryID){
     api.getVenues(location,categoryID).then((res) => {
+      this.setState({
+        venueData: res,
+        venues: res.response.venues,
+        venue: res.response.venues[1].name,
+        venueCheckinCount: res.response.venues[1].hereNow.count,
+        venueCheckin: res.response.venues[1].hereNow.summary
+      })
+    });
+  }
+
+  getLocationVenues(lat,lon,categoryID){
+    api.getLocationBasedVenues(lat,lon,categoryID).then((res) => {
       this.setState({
         venueData: res,
         venues: res.response.venues,
@@ -55,8 +89,31 @@ export default class App extends React.Component {
     this.getVenues(location, categoryID);
   }
 
+  showLocationGyms(lat,lon,categoryID){
+    this.setState({ 
+      showGyms: true, 
+      venueType: 'Gyms', 
+      GymActive: 'black', 
+      PoolActive: 'gray' 
+    });
+    this.getLocationVenues(lat,lon, categoryID);
+  }
+
   componentDidMount() {
-    this.showGyms('Ghent','4bf58dd8d48988d176941735');
+    requestLocationPermission();
+    navigator.geolocation.getCurrentPosition((position) => {
+      let lat = parseFloat(position.coords.latitude);
+      let lon = parseFloat(position.coords.longitude);
+      console.warn(lat, lon);
+      this.setState({
+        latitude: lat,
+        longitude: lon,
+      })
+      this.showLocationGyms(lat,lon,'4bf58dd8d48988d176941735');
+    }, (error) => alert(JSON.stringify(error)), { enableHighAccuracy: true })
+
+    //this.showGyms('Ghent','4bf58dd8d48988d176941735');
+
     /*
     api.getVenues('Ghent','4bf58dd8d48988d105941735').then((res) => {
       this.setState({
@@ -83,7 +140,7 @@ export default class App extends React.Component {
         hereNow: res.response.hereNow.count,
       })
     });*/
-  }
+  };
 
 
 
@@ -120,7 +177,7 @@ export default class App extends React.Component {
           <Text style={styles.venueType}>{this.state.venueType}</Text>
           {venueView}
           <View style={styles.bottomNav}>
-            <TouchableOpacity style={styles.iconGymButton} onPress={() => this.showGyms('Ghent','4bf58dd8d48988d176941735')}><Icon name='stopwatch' style={[{color: this.state.GymActive}]}/></TouchableOpacity><TouchableOpacity style={styles.iconPoolButton} onPress={() => this.showGyms('Ghent','4bf58dd8d48988d105941735')}><Icon name='water' style={[{color: this.state.PoolActive}]}/></TouchableOpacity>
+            <TouchableOpacity style={styles.iconGymButton} onPress={() => this.showLocationGyms('51.1211132','3.914752599999929','4bf58dd8d48988d176941735')}><Icon name='stopwatch' style={[{color: this.state.GymActive}]}/></TouchableOpacity><TouchableOpacity style={styles.iconPoolButton} onPress={() => this.showLocationGyms('51.1211132','3.914752599999929','4bf58dd8d48988d105941735')}><Icon name='water' style={[{color: this.state.PoolActive}]}/></TouchableOpacity>
           </View>
         </View>
       </View>
