@@ -15,6 +15,17 @@ var api = {
         var url = 'https://api.foursquare.com/v2/venues/'+ID+'/herenow?&oauth_token=SE2B5F5334D2ZCSRF5M3KRCPKWC5BR5SCRZATWWWMTX4ZI4P&v=20180422';
         //var url = 'https://api.foursquare.com/v2/venues/575ef2e9498e19229bfc0df8/herenow?&oauth_token=SE2B5F5334D2ZCSRF5M3KRCPKWC5BR5SCRZATWWWMTX4ZI4P&v=20180422';
         return fetch(url).then((res) => res.json());
+    },
+    getVenues(location,category){
+        var url = '';
+        if(category == '4bf58dd8d48988d105941735'){
+            url = 'https://api.foursquare.com/v2/venues/search?near='+location+',be&categoryId='+category+'&oauth_token=SE2B5F5334D2ZCSRF5M3KRCPKWC5BR5SCRZATWWWMTX4ZI4P&v=20180422';
+            //url = 'https://api.foursquare.com/v2/venues/search?near=Ghent,be&radius=10000&categoryId=4bf58dd8d48988d176941735&oauth_token=SE2B5F5334D2ZCSRF5M3KRCPKWC5BR5SCRZATWWWMTX4ZI4P&v=20180422';
+        } else {
+            url = 'https://api.foursquare.com/v2/venues/search?near='+location+',be&radius=10000&categoryId='+category+'&oauth_token=SE2B5F5334D2ZCSRF5M3KRCPKWC5BR5SCRZATWWWMTX4ZI4P&v=20180422';
+            //url = 'https://api.foursquare.com/v2/venues/search?near=Ghent,be&radius=10000&categoryId=4bf58dd8d48988d176941735&oauth_token=SE2B5F5334D2ZCSRF5M3KRCPKWC5BR5SCRZATWWWMTX4ZI4P&v=20180422';
+        }
+        return fetch(url).then((res) => res.json());
     }
 }
 

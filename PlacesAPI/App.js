@@ -22,11 +22,43 @@ export default class App extends React.Component {
       gymCheckinCount: '',
       gymCheckin: '',
       hereNow: '',
+      poolCategory: '4bf58dd8d48988d105941735',
+      gymCategory: '4bf58dd8d48988d176941735',
+      venueData: '',
+      venues: '',
+      venue: '',
+      venueCheckinCount:'',
+      venueCheckin:'',
+
     }
   }
 
+  getVenues(location,categoryID){
+    api.getVenues(location,categoryID).then((res) => {
+      this.setState({
+        venueData: res,
+        venues: res.response.venues,
+        venue: res.response.venues[1].name,
+        venueCheckinCount: res.response.venues[1].hereNow.count,
+        venueCheckin: res.response.venues[1].hereNow.summary
+      })
+    });
+  }
+
+  showGyms(location,categoryID){
+    this.setState({ 
+      showGyms: true, 
+      venueType: 'Gyms', 
+      GymActive: 'black', 
+      PoolActive: 'gray' 
+    });
+    this.getVenues(location, categoryID);
+  }
+
   componentDidMount() {
-    api.getPools('Ghent').then((res) => {
+    this.showGyms('Ghent','4bf58dd8d48988d176941735');
+    /*
+    api.getVenues('Ghent','4bf58dd8d48988d105941735').then((res) => {
       this.setState({
         poolData: res,
         pools: res.response.venues,
@@ -34,9 +66,9 @@ export default class App extends React.Component {
         poolCheckinCount: res.response.venues[1].hereNow.count,
         poolCheckin: res.response.venues[1].hereNow.summary
       })
-    });
-
-    api.getGyms('Ghent').then((res) => {
+    });*/
+    /*
+    api.getVenues('Ghent','4bf58dd8d48988d176941735').then((res) => {
       this.setState({
         gymData: res,
         gyms: res.response.venues,
@@ -50,12 +82,13 @@ export default class App extends React.Component {
       this.setState({
         hereNow: res.response.hereNow.count,
       })
-    });
+    });*/
   }
 
 
 
   render() {
+    /*
     const gymView =
       <FlatList style={styles.list}
         data={this.state.gyms}
@@ -64,6 +97,11 @@ export default class App extends React.Component {
       />
     const poolView = <FlatList style={styles.list}
       data={this.state.pools}
+      keyExtractor={item => item.id}
+      renderItem={({ item }) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
+    />*/
+    const venueView = <FlatList style={styles.list}
+      data={this.state.venues}
       keyExtractor={item => item.id}
       renderItem={({ item }) => <View style={styles.Item}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
     />
@@ -76,16 +114,15 @@ export default class App extends React.Component {
         />
         <View style={styles.toolbar}>
           <Icon name='menu' style={styles.toolbarIcon}/>
-          <Text style={styles.toolbarText}>Location picker</Text>
+          <Text style={styles.toolbarText}>Choose sportvenue</Text>
         </View>
         <View style={styles.container}>
           <Text style={styles.venueType}>{this.state.venueType}</Text>
-          {this.state.showGyms ? gymView : poolView}
+          {venueView}
           <View style={styles.bottomNav}>
-            <TouchableOpacity style={styles.iconGymButton} onPress={() => { this.setState({ showGyms: true, venueType: 'Gyms', GymActive: 'black', PoolActive: 'gray' }) }}><Icon name='stopwatch' style={[{color: this.state.GymActive}]}/></TouchableOpacity><TouchableOpacity style={styles.iconPoolButton} onPress={() => { this.setState({ showGyms: false, venueType: 'Pools', GymActive: 'gray', PoolActive: 'black' }) }}><Icon name='water' style={[{color: this.state.PoolActive}]}/></TouchableOpacity>
+            <TouchableOpacity style={styles.iconGymButton} onPress={() => this.showGyms('Ghent','4bf58dd8d48988d176941735')}><Icon name='stopwatch' style={[{color: this.state.GymActive}]}/></TouchableOpacity><TouchableOpacity style={styles.iconPoolButton} onPress={() => this.showGyms('Ghent','4bf58dd8d48988d105941735')}><Icon name='water' style={[{color: this.state.PoolActive}]}/></TouchableOpacity>
           </View>
         </View>
-        <Text>Number of people in gym: {this.state.hereNow}</Text>
       </View>
     );
   }
