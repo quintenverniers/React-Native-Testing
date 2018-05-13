@@ -7,10 +7,11 @@ import Profile from './components/Profile.js';
 import Planning from './components/Planning.js';
 import About from './components/About.js';
 import Logout from './components/Logout.js';
+import Venues from './components/Venues.js';
 
 const DrawerContent = (props) => (
   <View>
-    <Image source={require('./assets/HeaderImageRed.jpg')} style={{height: 140}}/>
+    <Image source={require('./assets/HeaderImageRed.jpg')} style={{ height: 140 }} />
     <DrawerItems {...props} />
   </View>
 )
@@ -20,11 +21,19 @@ const AppNavigator = DrawerNavigator({
   Profile: { screen: Profile },
   Planning: { screen: Planning },
   About: { screen: About },
-  Logout: {screen: Logout}
+  Logout: { screen: Logout }
 },
   {
     contentComponent: DrawerContent,
-  })
+  }
+)
+
+const Stack = StackNavigator({
+  Profile: { screen: Profile },
+  Venues: { screen: Venues }
+},{
+  initialRouteName: 'Venues',
+})
 
 export default class App extends React.Component {
   render() {

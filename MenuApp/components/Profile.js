@@ -26,29 +26,28 @@ export default class Profile extends React.Component {
 
     RunningChange() {
         this.setState({
-            runningCheck: !this.state.check1
+            runningCheck: !this.state.runningCheck
         })
     }
 
     swimmingChange() {
         this.setState({
-            swimmingCheck: !this.state.check2
+            swimmingCheck: !this.state.swimmingCheck
         })
     }
 
     fitnessChange() {
         this.setState({
-            fitnessCheck: !this.state.check3
+            fitnessCheck: !this.state.fitnessCheck
         })
     }
 
-    chooseVenue(VenueType, VenueCategory){
-        alert("Venue chosen"+
-    "\nTypeOfVenue: "+VenueType+
-    "\nCategory: "+VenueCategory);
+    chooseVenue(VenueType, VenueCategory) {
+        alert("go to venues screen");
+        this.props.navigation.navigate('Venues');
     }
 
-    saveChanges(){
+    saveChanges() {
         alert("Profile Changes pushed to database");
     }
 
@@ -100,7 +99,7 @@ export default class Profile extends React.Component {
                                 <Text style={styles.CheckBoxLabel}> Swimming </Text>
                             </View>
 
-                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => this.chooseVenue(this.state.poolType,this.state.poolCategoryID)}>
+                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => this.chooseVenue()}>
                                 <Text style={styles.ChooseVenue}>Choose pool ></Text>
                             </TouchableOpacity>
 
@@ -109,7 +108,7 @@ export default class Profile extends React.Component {
                                 <Text style={styles.CheckBoxLabel}> Fitness </Text>
                             </View>
 
-                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => this.chooseVenue(this.state.gymType,this.state.gymCategoryID)}>
+                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => this.chooseVenue(this.state.gymType, this.state.gymCategoryID)}>
                                 <Text style={styles.ChooseVenue}>Choose gym ></Text>
                             </TouchableOpacity>
                         </View>
@@ -156,7 +155,7 @@ const styles = StyleSheet.create({
     UserImage: {
         marginTop: 20,
         height: 175,
-        width: 175,    
+        width: 175,
     },
     UserDataContainer: {
         padding: 15,
@@ -220,5 +219,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         color: 'white'
-      },
+    },
 });
