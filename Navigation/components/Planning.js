@@ -6,13 +6,26 @@ export default class Planning extends React.Component {
     static navigationOptions = {
         header: null,
     }
-    render() {
+
+    constructor(){
+        super();
+        this.state={
+            category: '',
+        }
+    }
+
+    componentDidMount(){
         const {navigation} = this.props;
-        const category = navigation.getParam('CategoryID','99');
+        const cat = navigation.getParam('CategoryID','99');
+        this.setState({
+            category: cat,
+        })
+    };
+    render() {
         return (
             <View style={styles.container}>
                 <Text>Stacknavigator</Text>
-                <Text>{category}</Text>
+                <Text>{this.state.category}</Text>
             </View>
         );
     }
