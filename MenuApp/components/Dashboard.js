@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, FlatList, PermissionsAndroid } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, FlatList, PermissionsAndroid, Image } from 'react-native';
 import Icon from 'react-native-ionicons';
 import weather from '../helper/weather.js';
 import places from '../helper/places.js';
@@ -114,14 +114,13 @@ export default class Dashboard extends React.Component {
                     <Icon name="menu" onPress={() => this.props.navigation.toggleDrawer()} style={styles.menuIcon} /><Text style={styles.toolbarText}>Dashboard</Text>
                 </View>
                 <Text>{data.toString()}</Text>
-                <View style={styles.box}>
-                    {/*<Image source={require('../images/kenzo.png')} style={styles.Icon} />*/}
-                    <Text style={styles.Text}>Welcome, {this.state.userName}</Text>
+                <View style={styles.welcomeContainer}>
+                    <Image source={require('../assets/testProfileImage.jpg')} style={styles.userImage} />
+                    <Text style={styles.userName}>Welcome, {this.state.userName}</Text>
                 </View>
-                <Text>{this.state.latitude}, {this.state.longitude}</Text>
-                <View style={styles.box2}>
-                    <Icon size={80} name="calendar" />
-                    <Text style={styles.Datum}>Donderdag, 7 augustus 2018</Text>
+                <View style={styles.dateContainer}>
+                    <Icon name="calendar" style={styles.calendarIcon} />
+                    <Text style={styles.date}>Donderdag, 7 augustus 2018</Text>
                 </View>
                 <FlatList style={styles.list}
                     data={sportMoments}
@@ -163,6 +162,66 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 30,
     },
+    welcomeContainer: {
+        backgroundColor: '#fff',
+        marginTop: 5,
+        marginLeft: 3,
+        marginRight: 3,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingBottom: 2,
+        borderColor: '#d6d7da',
+        borderWidth: 1,
+        flexDirection: 'row',
+        marginBottom: 15,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    userImage: {
+        flexDirection: 'row',
+        height: 60,
+        width: 60,
+        margin: 5,
+        borderWidth: 1,
+        borderRadius: 75
+    },
+
+    userName: {
+        flexDirection: 'row',
+        color: '#000',
+        fontSize: 30,
+        marginLeft: 20,
+        justifyContent: 'center',
+    },
+    dateContainer: {
+        backgroundColor: '#fff',
+        marginTop: 5,
+        marginLeft: 3,
+        marginRight: 3,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingBottom: 5,
+        paddingTop: 5,
+        borderColor: '#d6d7da',
+        borderWidth: 1,
+        flexDirection: 'row',
+        marginBottom: 15,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    calendarIcon: {
+        fontSize: 40,
+        color: '#000',
+    },
+    date: {
+        fontSize: 20,
+        textAlign: 'right',
+        color: '#000',
+        fontWeight: '400',
+        paddingLeft: 20,
+        paddingRight: 10,
+    },
     sportItem: {
         backgroundColor: '#fff',
         marginTop: 5,
@@ -171,7 +230,12 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         paddingRight: 5,
         paddingBottom: 2,
-        borderWidth: 1 / 2,
+        borderTopColor: '#d6d7da',
+        borderTopWidth: 1,
+        borderRightColor: '#d6d7da',
+        borderRightWidth: 1,
+        borderBottomColor: '#d6d7da',
+        borderBottomWidth: 1,
         flexDirection: 'row',
     },
     runningItem: {
