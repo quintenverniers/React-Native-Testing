@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Image, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-ionicons';
 
 export default class VenueDetail extends React.Component {
@@ -54,11 +54,11 @@ export default class VenueDetail extends React.Component {
                 <View style={styles.content}>
                     <View style={styles.venueWrapper}>
                         <Text style={styles.venueMainTitle}>{this.state.venueName}</Text>
-                        <Text>Located: {this.state.venueAddr}, {this.state.venueZip} {this.state.venueCity}</Text>
+                        <Text style={styles.venueAddress}>Located: {this.state.venueAddr}, {this.state.venueZip} {this.state.venueCity}</Text>
                         <Text>Would you like to select this venue?</Text>
                         <Text>(You can always change this in your profile settings)</Text>
                         <View style={styles.SaveButtonView}>
-                            <TouchableOpacity style={styles.SaveButton} onPress={() => alert('Venue saved',this.state.venueName + 'was saved as your location.',[{ text: 'OK', onPress: () => this.saveChanges() },])} >
+                            <TouchableOpacity style={styles.SaveButton} onPress={() => Alert.alert('Venue saved',this.state.venueName + ' was saved as your location.',[{ text: 'OK', onPress: () => this.saveChanges() },])} >
                                 <Text style={styles.SaveButtonText}>SAVE</Text>
                             </TouchableOpacity>
                     </View>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
     },
     content: {
-        justifyContent: 'center',
+        flex: 1,
     },
     venueWrapper: {
         alignItems: 'center',
@@ -105,11 +105,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    venueSubTitle: {
-        fontSize: 25,
+    venueAddress: {
         color: '#000',
         fontWeight: 'bold',
-        textAlign: 'center',
+        marginBottom: 15,
     },
     venueText: {
         fontSize: 15,

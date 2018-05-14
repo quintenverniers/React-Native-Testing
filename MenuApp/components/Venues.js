@@ -93,7 +93,7 @@ export default class Venues extends React.Component {
                     hidden={false}
                 />
                 <View style={styles.toolBar}>
-                    <Icon name="arrow-back" onPress={() => this.props.navigation.navigate('Profile')} style={styles.menuIcon} /><Text style={styles.toolbarText}>Profile</Text>
+                    <Icon name="arrow-back" onPress={() => this.props.navigation.navigate('Profile')} style={styles.menuIcon} /><Text style={styles.toolbarText}>Choose a venue</Text>
                 </View>
                 {/* How to pass gyms from profile */}
                 <Text style={styles.venueType}>{this.state.venueType}</Text>
