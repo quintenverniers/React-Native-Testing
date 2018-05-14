@@ -74,7 +74,6 @@ export default class Venues extends React.Component {
                 venueType: type,
             })
             //how to pass categoryID from the profile screen?
-            //this.showLocationGyms(lat, lon, '4bf58dd8d48988d176941735');
             this.getVenues(lat, lon, cat);
         }, (error) => alert(JSON.stringify(error)), { enableHighAccuracy: true })
     }

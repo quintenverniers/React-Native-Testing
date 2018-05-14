@@ -1,9 +1,29 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, FlatList } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, FlatList, PermissionsAndroid } from 'react-native';
 import Icon from 'react-native-ionicons';
 import weather from '../helper/weather.js';
 import places from '../helper/places.js';
 import { getSportMoment } from '../helper/calculation.js';
+
+async function requestLocationPermission() {
+    try {
+        const granted = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+            {
+                'title': 'Simplex location permission',
+                'message': 'Simplex needs access to your location' +
+                    'to show you relevant info regarding your location.'
+            }
+        )
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            //console.warn("You can use the camera")
+        } else {
+            //console.warn("Camera permission denied")
+        }
+    } catch (err) {
+        console.warn(err);
+    }
+}
 
 export default class Dashboard extends React.Component {
     static navigationOptions = {
@@ -17,27 +37,43 @@ export default class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
+            userName: 'Quinten',
             currentCity: '',
             currentCountry: '',
             running: true,
             swimming: true,
             fitness: true,
-            weatherCode: '',
+            weatherCode: 0,
             gymCount: '',
             poolCount: '',
+            latitude: 0,
+            longitude: 0,
         }
     }
 
     componentDidMount() {
         if (this.state.running) {
-            //get location:
-
-            //get real weather code
-            weather.getWeatherNow('Ghent', 'be').then((res) => {
+            requestLocationPermission();
+            navigator.geolocation.getCurrentPosition((position) => {
+                let lat = parseFloat(position.coords.latitude);
+                let lon = parseFloat(position.coords.longitude);
+                console.warn(lat, lon);
                 this.setState({
-                    weatherCode: res.weather[0].id, //weather code
+                    latitude: lat,
+                    longitude: lon,
                 })
-            });
+                weather.getWeatherNow(lat, lon).then((res) => {
+                    this.setState({
+                        weatherCode: res.weather[0].id, //weather code
+                    })
+                    console.warn(res.weather[0].toString());
+                    console.warn(this.state.weatherCode);
+                }).catch((error) => {
+                    alert(error.message);
+                });
+                //how to pass categoryID from the profile screen?
+            }, (error) => alert(JSON.stringify(error)), { enableHighAccuracy: true })
+
         }
         if (this.state.swimming) {
             //get pool from db
@@ -65,10 +101,8 @@ export default class Dashboard extends React.Component {
 
     render() {
         // calculation in Helper
-        var sportMoments = getSportMoment(this.state.running, this.state.weatherCode, this.state.fitness, this.state.gymCount, this.state.swimming, this.state.poolCount);
-
-
-
+        let sportMoments = getSportMoment(this.state.running, this.state.weatherCode, this.state.fitness, this.state.gymCount, this.state.swimming, this.state.poolCount);
+        let data = new Date();
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -79,15 +113,24 @@ export default class Dashboard extends React.Component {
                 <View style={styles.toolBar}>
                     <Icon name="menu" onPress={() => this.props.navigation.toggleDrawer()} style={styles.menuIcon} /><Text style={styles.toolbarText}>Dashboard</Text>
                 </View>
-
+                <Text>{data.toString()}</Text>
+                <View style={styles.box}>
+                    {/*<Image source={require('../images/kenzo.png')} style={styles.Icon} />*/}
+                    <Text style={styles.Text}>Welcome, {this.state.userName}</Text>
+                </View>
+                <Text>{this.state.latitude}, {this.state.longitude}</Text>
+                <View style={styles.box2}>
+                    <Icon size={80} name="calendar" />
+                    <Text style={styles.Datum}>Donderdag, 7 augustus 2018</Text>
+                </View>
                 <FlatList style={styles.list}
                     data={sportMoments}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item }) => {
-                        if (item.moment.sport == "Running"){ return <View style={[styles.sportItem,styles.runningItem]}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View></View> }
-                        else if (item.moment.sport == "Swimming"){ return <View style={[styles.sportItem,styles.swimmingItem]}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View></View> }
+                        if (item.moment.sport == "Running") { return <View style={[styles.sportItem, styles.runningItem]}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View></View> }
+                        else if (item.moment.sport == "Swimming") { return <View style={[styles.sportItem, styles.swimmingItem]}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View></View> }
                         else {
-                            return <View style={[styles.sportItem,styles.fitnessItem]}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View></View>
+                            return <View style={[styles.sportItem, styles.fitnessItem]}><View style={styles.sportItemIconWrapper}><Icon name="alarm" style={{ color: '#000', fontSize: 40 }} /></View><View><Text style={styles.momentTitle}>{item.moment.sport}</Text><Text style={styles.momentTime}>{item.moment.time}</Text></View></View>
                         }
                     }}
                 />
