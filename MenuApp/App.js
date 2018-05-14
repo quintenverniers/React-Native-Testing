@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { StackNavigator, DrawerItems, DrawerNavigator } from 'react-navigation';
+import { StackNavigator, DrawerItems, DrawerNavigator, SwitchNavigator } from 'react-navigation';
 import Icon from 'react-native-ionicons';
 import Dashboard from './components/Dashboard.js';
 import Profile from './components/Profile.js';
@@ -31,14 +31,19 @@ const AppNavigator = DrawerNavigator({
 const Stack = StackNavigator({
   Profile: { screen: Profile },
   Venues: { screen: Venues }
-},{
-  initialRouteName: 'Venues',
+}, {
+    initialRouteName: 'Venues',
+  })
+
+const NestedNavigator = SwitchNavigator({
+  Main: AppNavigator,
+  Sub: Stack
 })
 
 export default class App extends React.Component {
   render() {
     return (
-      <AppNavigator />
+        <NestedNavigator />
     );
   }
 }

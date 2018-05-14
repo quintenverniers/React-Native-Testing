@@ -42,9 +42,9 @@ export default class Dashboard extends React.Component {
         if (this.state.swimming) {
             //get pool from db
             //in firebase "then clause --> set poolID to value from db"
-            poolID = 0;
+            poolID = '575ef2e9498e19229bfc0df8';
             //get amount of people at this venue
-            places.getHereNowPool(poolID).then((res) => {
+            places.getHereNow(poolID).then((res) => {
                 this.setState({
                     poolCount: res.response.hereNow.count,
                 })
@@ -53,8 +53,8 @@ export default class Dashboard extends React.Component {
         if (this.state.fitness) {
             //get gym from db
             //in firebase "then clause --> set poolID to value from db"
-            gymID = 0;
-            places.getHereNowGym(gymID).then((res) => {
+            gymID = '575ef2e9498e19229bfc0df8';
+            places.getHereNow(gymID).then((res) => {
                 this.setState({
                     gymCount: res.response.hereNow.count,
                 })

@@ -44,7 +44,7 @@ export default class Profile extends React.Component {
 
     chooseVenue(VenueType, VenueCategory) {
         alert("go to venues screen");
-        this.props.navigation.navigate('Venues');
+        
     }
 
     saveChanges() {
@@ -99,7 +99,7 @@ export default class Profile extends React.Component {
                                 <Text style={styles.CheckBoxLabel}> Swimming </Text>
                             </View>
 
-                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => this.chooseVenue()}>
+                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => {this.props.navigation.navigate('Venues',{Type: 'Pools',CategoryID: '4bf58dd8d48988d105941735'});}}>
                                 <Text style={styles.ChooseVenue}>Choose pool ></Text>
                             </TouchableOpacity>
 
@@ -108,7 +108,7 @@ export default class Profile extends React.Component {
                                 <Text style={styles.CheckBoxLabel}> Fitness </Text>
                             </View>
 
-                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => this.chooseVenue(this.state.gymType, this.state.gymCategoryID)}>
+                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => {this.props.navigation.navigate('Venues',{Type: 'Gym',CategoryID: '4bf58dd8d48988d176941735'});}}>
                                 <Text style={styles.ChooseVenue}>Choose gym ></Text>
                             </TouchableOpacity>
                         </View>
