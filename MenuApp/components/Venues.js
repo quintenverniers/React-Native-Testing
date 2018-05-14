@@ -15,9 +15,9 @@ async function requestLocationPermission() {
             }
         )
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            console.warn("You can use the camera")
+            //console.warn("You can use the camera")
         } else {
-            console.warn("Camera permission denied")
+            //console.warn("Camera permission denied")
         }
     } catch (err) {
         console.warn(err);
@@ -60,13 +60,13 @@ export default class Venues extends React.Component {
         const { navigation } = this.props;
         const cat = navigation.getParam('CategoryID', '0');
         const type = navigation.getParam('Type');
-        console.warn(cat);
+        //console.warn(cat);
 
         requestLocationPermission();
         navigator.geolocation.getCurrentPosition((position) => {
             let lat = parseFloat(position.coords.latitude);
             let lon = parseFloat(position.coords.longitude);
-            console.warn(lat, lon);
+            //console.warn(lat, lon);
             this.setState({
                 latitude: lat,
                 longitude: lon,
