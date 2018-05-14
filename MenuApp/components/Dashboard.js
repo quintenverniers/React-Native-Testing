@@ -57,7 +57,7 @@ export default class Dashboard extends React.Component {
             navigator.geolocation.getCurrentPosition((position) => {
                 let lat = parseFloat(position.coords.latitude);
                 let lon = parseFloat(position.coords.longitude);
-                //console.warn(lat, lon);
+                console.warn(lat, lon);
                 this.setState({
                     latitude: lat,
                     longitude: lon,

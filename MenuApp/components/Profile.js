@@ -44,7 +44,6 @@ export default class Profile extends React.Component {
 
     chooseVenue(VenueType, VenueCategory) {
         alert("go to venues screen");
-        
     }
 
     saveChanges() {
@@ -108,7 +107,7 @@ export default class Profile extends React.Component {
                                 <Text style={styles.CheckBoxLabel}> Fitness </Text>
                             </View>
 
-                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => {this.props.navigation.navigate('Venues',{Type: 'Gym',CategoryID: '4bf58dd8d48988d176941735'});}}>
+                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => {this.props.navigation.navigate('Venues',{Type: 'Gym',CategoryID: '4bf58dd8d48988d176941735'})}}>
                                 <Text style={styles.ChooseVenue}>Choose gym ></Text>
                             </TouchableOpacity>
                         </View>
