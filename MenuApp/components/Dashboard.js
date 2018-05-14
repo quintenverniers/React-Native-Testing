@@ -48,16 +48,51 @@ export default class Dashboard extends React.Component {
             poolCount: '',
             latitude: 0,
             longitude: 0,
+            moment: 'PM',
+            startMoment: '',
+            endMoment: '',
+
         }
     }
 
     componentDidMount() {
+        //starthours
+        let startHour = '';
+        let endHour = '';
+
+        let moment = 'PM';
+        //get moment from db
+        if(moment == 'AM'){
+            //get morningStart and morningEnd from db
+            startHour = '9:30';
+            endHour = '11:30';
+        } else if(moment == 'PM'){
+            //get afternoonStart and afternoonEnd from db
+            startHour = '20:00';
+            endHour = '24:00';
+        } else {
+            // if moment isn't specified
+            // moment: current time"zone"
+        }
+
+        if(startHour == '' || startHour == null){
+            startHour = '12:00';
+        }
+        if(endHour == '' || endHour == null){
+            endHour = '14:00';
+        }
+        this.setState({
+            startMoment: startHour,
+            endMoment: endHour,
+        })
+        
+
         if (this.state.running) {
             requestLocationPermission();
             navigator.geolocation.getCurrentPosition((position) => {
                 let lat = parseFloat(position.coords.latitude);
                 let lon = parseFloat(position.coords.longitude);
-                console.warn(lat, lon);
+                //console.warn(lat, lon);
                 this.setState({
                     latitude: lat,
                     longitude: lon,
@@ -100,7 +135,8 @@ export default class Dashboard extends React.Component {
 
     render() {
         // calculation in Helper
-        let sportMoments = getSportMoment(this.state.running, this.state.weatherCode, this.state.fitness, this.state.gymCount, this.state.swimming, this.state.poolCount);
+        let sportMoments = getSportMoment(this.state.running, this.state.weatherCode, this.state.fitness, this.state.gymCount, this.state.swimming, this.state.poolCount, this.state.moment, this.state.startMoment, this.state.endMoment);
+        //console.warn(sportMoments);
         let data = new Date();
         return (
             <View style={styles.container}>
