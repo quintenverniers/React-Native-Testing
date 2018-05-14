@@ -83,7 +83,7 @@ export default class Venues extends React.Component {
         const venueView = <FlatList style={styles.venueList}
             data={this.state.venues}
             keyExtractor={item => item.id}
-            renderItem={({ item }) => <View style={styles.listItem}><TouchableOpacity onPress={() => this.props.navigation.navigate('VenueDetail')}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></TouchableOpacity></View>}
+            renderItem={({ item }) => <View style={styles.listItem}><TouchableOpacity onPress={() => this.props.navigation.navigate('VenueDetail',{id: item.id, name: item.name, address: item.location.address, zip: item.location.postalCode,city: item.location.city})}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></TouchableOpacity></View>}
         />
         return (
             <View style={styles.container}>
