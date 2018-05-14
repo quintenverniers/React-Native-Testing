@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar, Image, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-ionicons';
 
-export default class VenueDetail extends React.Component {
+export default class VenueDetailPools extends React.Component {
     static navigationOptions = {
         header: null,
     };
@@ -49,7 +49,7 @@ export default class VenueDetail extends React.Component {
                     hidden={false}
                 />
                 <View style={styles.toolBar}>
-                    <Icon name="arrow-back" onPress={() => this.props.navigation.navigate('Venues')} style={styles.menuIcon} /><Text style={styles.toolbarText}>Venue</Text>
+                    <Icon name="arrow-back" onPress={() => this.props.navigation.navigate('VenuesPools')} style={styles.menuIcon} /><Text style={styles.toolbarText}>Venue</Text>
                 </View>
                 <View style={styles.content}>
                     <View style={styles.venueWrapper}>

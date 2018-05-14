@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar, TextInput, ScrollView, Picker, CheckBox, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-ionicons';
 
+
 export default class Profile extends React.Component {
     static navigationOptions = {
         header: null,
@@ -59,7 +60,7 @@ export default class Profile extends React.Component {
                     hidden={false}
                 />
                 <View style={styles.toolBar}>
-                    <Icon name="menu" onPress={() => this.props.navigation.toggleDrawer()} style={styles.menuIcon} /><Text style={styles.toolbarText}>Profile</Text>
+                    <Icon name="menu"  style={styles.menuIcon} /><Text style={styles.toolbarText}>Profile</Text>
                 </View>
                 <ScrollView>
                     <View style={styles.UserImageContainer}>
@@ -98,7 +99,7 @@ export default class Profile extends React.Component {
                                 <Text style={styles.CheckBoxLabel}> Swimming </Text>
                             </View>
 
-                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => {this.props.navigation.navigate('Venues',{Type: 'Pools',CategoryID: '4bf58dd8d48988d105941735'});}}>
+                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => {this.props.navigation.navigate('VenuesPools',{Type: 'Pools',CategoryID: '4bf58dd8d48988d105941735'});}}>
                                 <Text style={styles.ChooseVenue}>Choose pool ></Text>
                             </TouchableOpacity>
 
@@ -107,7 +108,7 @@ export default class Profile extends React.Component {
                                 <Text style={styles.CheckBoxLabel}> Fitness </Text>
                             </View>
 
-                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => {this.props.navigation.navigate('Venues',{Type: 'Gym',CategoryID: '4bf58dd8d48988d176941735'})}}>
+                            <TouchableOpacity style={styles.ChooseVenueButton} onPress={() => {this.props.navigation.navigate('VenuesGyms',{Type: 'Gym',CategoryID: '4bf58dd8d48988d176941735'})}}>
                                 <Text style={styles.ChooseVenue}>Choose gym ></Text>
                             </TouchableOpacity>
                         </View>

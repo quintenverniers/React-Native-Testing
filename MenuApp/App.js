@@ -7,8 +7,10 @@ import Profile from './components/Profile.js';
 import Planning from './components/Planning.js';
 import About from './components/About.js';
 import Logout from './components/Logout.js';
-import Venues from './components/Venues.js';
-import VenueDetail from './components/VenueDetail.js';
+import VenuesGyms from './components/VenuesGyms.js';
+import VenueDetailGyms from './components/VenueDetailGyms.js';
+import VenuesPools from './components/VenuesPools';
+import VenueDetailPools from './components/VenueDetailPools';
 
 const DrawerContent = (props) => (
   <View>
@@ -31,11 +33,11 @@ const AppNavigator = DrawerNavigator({
 
 const Stack = StackNavigator({
   Profile: { screen: Profile },
-  Venues: { screen: Venues },
-  VenueDetail: {screen: VenueDetail},
-}, {
-    initialRouteName: 'Venues',
-  })
+  VenuesGyms: { screen: VenuesGyms },
+  VenueDetailGyms: {screen: VenueDetailGyms},
+  VenuesPools: { screen: VenuesPools },
+  VenueDetailPools: {screen: VenueDetailPools},
+})
 
 const NestedNavigator = SwitchNavigator({
   Main: AppNavigator,
