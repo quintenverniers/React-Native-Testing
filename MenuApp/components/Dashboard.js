@@ -112,7 +112,7 @@ export default class Dashboard extends React.Component {
                 <View style={styles.toolBar}>
                     <Icon name="menu" onPress={() => this.props.navigation.toggleDrawer()} style={styles.menuIcon} /><Text style={styles.toolbarText}>Dashboard</Text>
                 </View>
-                <Text>{data.toString()}</Text>
+                {/*<Text>{data.toString()}</Text>*/}
                 <View style={styles.welcomeContainer}>
                     <Image source={require('../assets/testProfileImage.jpg')} style={styles.userImage} />
                     <Text style={styles.userName}>Welcome, {this.state.userName}</Text>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#f4f4f4',
     },
     toolBar: {
-        height: 60,
+        height: 56,
         backgroundColor: 'red',
         flexDirection: 'row',
     },
