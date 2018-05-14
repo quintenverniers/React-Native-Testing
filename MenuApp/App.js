@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { StackNavigator, DrawerItems, DrawerNavigator, SwitchNavigator } from 'react-navigation';
-import Icon from 'react-native-ionicons';
+
 import Dashboard from './components/Dashboard.js';
 import Profile from './components/Profile.js';
 import Planning from './components/Planning.js';
