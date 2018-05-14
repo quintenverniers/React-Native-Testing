@@ -9,7 +9,7 @@ export default class Planning extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Planning')}><Text>Go to Planning</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Planning',{CategoryID: '12345'})}><Text>Go to Planning</Text></TouchableOpacity>
             </View>
         );
     }

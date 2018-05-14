@@ -7,9 +7,12 @@ export default class Planning extends React.Component {
         header: null,
     }
     render() {
+        const {navigation} = this.props;
+        const category = navigation.getParam('CategoryID','99');
         return (
             <View style={styles.container}>
                 <Text>Stacknavigator</Text>
+                <Text>{category}</Text>
             </View>
         );
     }
