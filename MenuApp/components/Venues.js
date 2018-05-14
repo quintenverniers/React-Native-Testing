@@ -83,7 +83,7 @@ export default class Venues extends React.Component {
         const venueView = <FlatList style={styles.venueList}
             data={this.state.venues}
             keyExtractor={item => item.id}
-            renderItem={({ item }) => <View style={styles.listItem}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></View>}
+            renderItem={({ item }) => <View style={styles.listItem}><TouchableOpacity onPress={() => this.props.navigation.navigate('VenueDetail')}><Text style={styles.VenueTitle}>{item.name}</Text><Text>{item.location.address}, {item.location.postalCode} {item.location.city}</Text></TouchableOpacity></View>}
         />
         return (
             <View style={styles.container}>
@@ -93,7 +93,7 @@ export default class Venues extends React.Component {
                     hidden={false}
                 />
                 <View style={styles.toolBar}>
-                    <Icon name="menu" onPress={() => this.props.navigation.toggleDrawer()} style={styles.menuIcon} /><Text style={styles.toolbarText}>Profile</Text>
+                    <Icon name="arrow-back" onPress={() => this.props.navigation.navigate('Profile')} style={styles.menuIcon} /><Text style={styles.toolbarText}>Profile</Text>
                 </View>
                 {/* How to pass gyms from profile */}
                 <Text style={styles.venueType}>{this.state.venueType}</Text>

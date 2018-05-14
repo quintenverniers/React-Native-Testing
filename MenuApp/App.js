@@ -8,6 +8,7 @@ import Planning from './components/Planning.js';
 import About from './components/About.js';
 import Logout from './components/Logout.js';
 import Venues from './components/Venues.js';
+import VenueDetail from './components/VenueDetail.js';
 
 const DrawerContent = (props) => (
   <View>
@@ -30,7 +31,8 @@ const AppNavigator = DrawerNavigator({
 
 const Stack = StackNavigator({
   Profile: { screen: Profile },
-  Venues: { screen: Venues }
+  Venues: { screen: Venues },
+  VenueDetail: {screen: VenueDetail},
 }, {
     initialRouteName: 'Venues',
   })
