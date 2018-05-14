@@ -57,7 +57,7 @@ export default class Dashboard extends React.Component {
             navigator.geolocation.getCurrentPosition((position) => {
                 let lat = parseFloat(position.coords.latitude);
                 let lon = parseFloat(position.coords.longitude);
-                console.warn(lat, lon);
+                //console.warn(lat, lon);
                 this.setState({
                     latitude: lat,
                     longitude: lon,
@@ -66,10 +66,9 @@ export default class Dashboard extends React.Component {
                     this.setState({
                         weatherCode: res.weather[0].id, //weather code
                     })
-                    console.warn(res.weather[0].toString());
-                    console.warn(this.state.weatherCode);
+                    //console.warn(this.state.weatherCode);
                 }).catch((error) => {
-                    alert(error.message);
+                    //alert(error.message);
                 });
                 //how to pass categoryID from the profile screen?
             }, (error) => alert(JSON.stringify(error)), { enableHighAccuracy: true })

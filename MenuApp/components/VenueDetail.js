@@ -18,8 +18,8 @@ export default class VenueDetail extends React.Component {
         }
     }
 
-    saveChanges() {
-        console.warn("saved");
+    saveChanges(id) {
+        console.warn("saved"+id);
     }
 
     componentDidMount() {
@@ -58,7 +58,7 @@ export default class VenueDetail extends React.Component {
                         <Text>Would you like to select this venue?</Text>
                         <Text>(You can always change this in your profile settings)</Text>
                         <View style={styles.SaveButtonView}>
-                            <TouchableOpacity style={styles.SaveButton} onPress={() => Alert.alert('Venue saved',this.state.venueName + ' was saved as your location.',[{ text: 'OK', onPress: () => this.saveChanges() },])} >
+                            <TouchableOpacity style={styles.SaveButton} onPress={() => Alert.alert('Venue saved',this.state.venueName + ' was saved as your location.',[{ text: 'OK', onPress: () => this.saveChanges(this.state.venueId) },])} >
                                 <Text style={styles.SaveButtonText}>SAVE</Text>
                             </TouchableOpacity>
                     </View>
