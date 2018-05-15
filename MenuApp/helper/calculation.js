@@ -26,8 +26,10 @@
 * otherwise we won't create an event
 */
 export const getSportMoment = (running, weatherCode, fitness, gymCount, swimming, poolCount, moment, startHour, endHour) => {
+    //create empty sportMoments array
     let sportMoments = [];
-
+    
+    //TIME CALCULATIONS
     //get current hour
     let curtime = new Date();
     let curhour = curtime.getHours();
@@ -42,33 +44,79 @@ export const getSportMoment = (running, weatherCode, fitness, gymCount, swimming
     let endTimeHour = parseInt(endTime[0]);
     let endTimeMiute = parseInt(endTime[1]);
 
-    //add leading 0 to the minutes
-    if (curminute < 10) {
-        curminute = '0' + curminute;
+    //Check if the minute fall in one of the quarters in an hour and set them to the closest quarter
+    //if it falls above 45mins set them to 00
+    if (curminute < 15) {
+        curminute = 15;
+    } else if (curminute >= 15 && curminute <= 30) {
+        curminute = 30;
+    } else if (curminute >= 30 && curminute <= 45) {
+        curminute = 45;
+    } else {
+        curminute = 0 + '0';
     }
+
     let momentMinutes = curminute;
 
-    //running moment
+    //RUNNING MOMENT
     //check if running is true and weather code is valid
     if (running && weatherCode < 999) {
         let runMomentTime = '';
         let runMomentStart = 0;
         let runMomentEnd = 0;
         //if the weather is nice
-        if (weatherCode == 500 || weatherCode == 501 || (weatherCode >= 800 && weatherCode <= 804)) {
-            //if sportmoment already has an item
-            if (sportMoments.length > 0) {
-                //increment the id of the last item
-                let sportMomentID = parseInt(sportMoments[sportMoments.length - 1].id) + 1;
-                sportMoments.push({ "id": sportMomentID, "moment": { "sport": "Running", "time": "8:00 - 10:00" } });
+        if (weatherCode == 301 || weatherCode == 500 || weatherCode == 501 || (weatherCode >= 800 && weatherCode <= 804) || weatherCode == 701 || weatherCode == 741) {
+            if (moment == 'AM') {
+                //check if the current hour is before 12o'clock 
+                //and the current hour is between the timezone limits
+                if (curhour < 12 && (curhour+1) >= startTimeHour && curhour < endTimeHour) {
+                    //set the momentStart an hour from now
+                    runMomentStart = curhour + 1;
+                    //set the momentEnd 1 hour after the start
+                    runMomentEnd = runMomentStart + 1;
+                    //make a stringmoment
+                    runMomentTime = '' + runMomentStart + ':' + momentMinutes + ' - ' + runMomentEnd + ':' + momentMinutes + '';
+                }
             } else {
-                //use 1 as id
-                sportMoments.push({ "id": "1", "moment": { "sport": "Running", "time": "8:00 - 10:00" } });
+                //if timezone is set to PM
+                //if the current hour is before 24.
+                //and the currenthour is between the timezone limits
+                if (curhour < 24 && (curhour+1) >= startTimeHour && (curhour+2) < endTimeHour) {
+                    //if the currenthour + 1 is after 24, start counting from 0
+                    if ((curhour + 1) >= 24) {
+                        runMomentStart = curhour - 23;
+                    } else {
+                        runMomentStart = curhour + 1;
+                    }
+                    runMomentEnd = runMomentStart + 1;
+                    //if the hour is under 10 add leading zeros
+                    if (runMomentStart < 10) {
+                        runMomentStart = '0' + runMomentStart;
+                    }
+                    if (runMomentEnd < 10) {
+                        runMomentEnd = '0' + runMomentEnd;
+                    }
+                    runMomentTime = '' + runMomentStart + ':' + momentMinutes + ' - ' + runMomentEnd + ':' + momentMinutes + '';
+                }
+            }
+
+            if (runMomentTime != '') {
+                if ((!(runMomentStart < startTimeHour)) && (!(runMomentEnd > endTimeHour))) {
+                    //if sportmoment already has an item
+                    if (sportMoments.length > 0) {
+                        //increment the id of the last item
+                        let sportMomentID = parseInt(sportMoments[sportMoments.length - 1].id) + 1;
+                        sportMoments.push({ "id": sportMomentID, "moment": { "sport": "Running", "time": runMomentTime } });
+                    } else {
+                        //use 1 as id
+                        sportMoments.push({ "id": "1", "moment": { "sport": "Running", "time": runMomentTime } });
+                    }
+                }
             }
         }
     }
 
-    //swimming moment
+    //SWIMMING MOMENT
     //check if swimming is true and valid poolCount
     if (swimming && poolCount < 999) {
         let swimMomentTime = '';
@@ -76,21 +124,31 @@ export const getSportMoment = (running, weatherCode, fitness, gymCount, swimming
         let swimMomentEnd = 0;
         //if lt 50 people 'HereNow'
         if (poolCount <= 50) {
+            //if the timezone is set to AM
             if (moment == 'AM') {
-                if (curhour < 12 && curhour >= startTimeHour && curhour < endTimeHour) {
+                //check if the current hour is before 12o'clock 
+                //and the current hour is between the timezone limits
+                if (curhour < 12 && (curhour+1) >= startTimeHour && (curhour+3) < endTimeHour) {
+                    //set the momentStart an hour from now
                     swimMomentStart = curhour + 1;
+                    //set the momentEnd 2 hours after the start
                     swimMomentEnd = swimMomentStart + 2;
-
+                    //make a stringmoment
                     swimMomentTime = '' + swimMomentStart + ':' + momentMinutes + ' - ' + swimMomentEnd + ':' + momentMinutes + '';
                 }
             } else {
-                if (curhour < 24 && curhour >= startTimeHour && curhour < endTimeHour) {
+                //if timezone is set to PM
+                //if the current hour is before 24.
+                //and the currenthour is between the timezone limits
+                if (curhour < 24 && (curhour+1) >= startTimeHour && (curhour+3) < endTimeHour) {
+                    //if the currenthour + 1 is after 24, start counting from 0
                     if ((curhour + 1) >= 24) {
                         swimMomentStart = curhour - 23;
                     } else {
                         swimMomentStart = curhour + 1;
                     }
                     swimMomentEnd = swimMomentStart + 2;
+                    //if the hour is under 10 add leading zeros
                     if (swimMomentStart < 10) {
                         swimMomentStart = '0' + swimMomentStart;
                     }
@@ -103,7 +161,7 @@ export const getSportMoment = (running, weatherCode, fitness, gymCount, swimming
 
             //gymMoment is empty if it doesn't fit between the set hours
             if (swimMomentTime != '') {
-                if ((!(swimMomentStart > startTimeHour) || !(swimMomentEnd < endTimeHour))) {
+                if ((!(swimMomentStart < startTimeHour)) && (!(swimMomentEnd > endTimeHour))) {
                     //if sportmoments already has moment
                     if (sportMoments.length > 0) {
                         //increment id
@@ -118,27 +176,37 @@ export const getSportMoment = (running, weatherCode, fitness, gymCount, swimming
         }
     }
 
-    // fitness moment
+    //FITNESS MOMENT
     if (fitness && gymCount < 999) {
         let gymMomentTime = '';
         let gymMomentStart = 0;
         let gymMomentEnd = 0;
         if (gymCount <= 50) {
+            //if the timezone is set to AM
             if (moment == 'AM') {
-                if (curhour < 12 && curhour >= startTimeHour && curhour < endTimeHour) {
+                //check if the current hour is before 12o'clock 
+                //and the current hour is between the timezone limits
+                if (curhour < 12 && (curhour+1) >= startTimeHour && (curhour+3) < endTimeHour) {
+                    //set the momentStart an hour from now
                     gymMomentStart = curhour + 1;
+                    //set the momentEnd 2 hours after the start
                     gymMomentEnd = gymMomentStart + 2;
-
+                    //make a stringmoment
                     gymMomentTime = '' + gymMomentStart + ':' + momentMinutes + ' - ' + gymMomentEnd + ':' + momentMinutes + '';
                 }
             } else {
-                if (curhour < 24 && curhour >= startTimeHour && curhour < endTimeHour) {
+                //if timezone is set to PM
+                //if the current hour is before 24.
+                //and the currenthour is between the timezone limits
+                if (curhour < 24 && (curhour+1) >= startTimeHour && (curhour+3) < endTimeHour) {
+                    //if the currenthour + 1 is after 24, start counting from 0
                     if ((curhour + 1) >= 24) {
                         gymMomentStart = curhour - 23;
                     } else {
                         gymMomentStart = curhour + 1;
                     }
                     gymMomentEnd = gymMomentStart + 2;
+                    //if the hour is under 10 add leading zeros
                     if (gymMomentStart < 10) {
                         gymMomentStart = '0' + gymMomentStart;
                     }
@@ -150,7 +218,9 @@ export const getSportMoment = (running, weatherCode, fitness, gymCount, swimming
             }
             //gymMoment is empty if it doesn't fit between the set hours
             if (gymMomentTime != '') {
-                if ((!(gymMomentStart > startTimeHour) || !(gymMomentEnd < endTimeHour))) {
+                //check if the momentStart is not before the timezone
+                //check if the momentEnd is not after the timezone
+                if ((!(gymMomentStart < startTimeHour)) && (!(gymMomentEnd > endTimeHour))) {
                     //if sportmoments already has moment
                     if (sportMoments.length > 0) {
                         let sportMomentID = parseInt(sportMoments[sportMoments.length - 1].id) + 1;

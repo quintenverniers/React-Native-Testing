@@ -60,16 +60,15 @@ export default class Dashboard extends React.Component {
         let startHour = '';
         let endHour = '';
 
-        let moment = 'PM';
         //get moment from db
-        if(moment == 'AM'){
+        if(this.state.moment == 'AM'){
             //get morningStart and morningEnd from db
-            startHour = '9:30';
+            startHour = '7:30';
             endHour = '11:30';
-        } else if(moment == 'PM'){
+        } else if(this.state.moment == 'PM'){
             //get afternoonStart and afternoonEnd from db
-            startHour = '20:00';
-            endHour = '24:00';
+            startHour = '14:00';
+            endHour = '19:00';
         } else {
             // if moment isn't specified
             // moment: current time"zone"
@@ -101,7 +100,7 @@ export default class Dashboard extends React.Component {
                     this.setState({
                         weatherCode: res.weather[0].id, //weather code
                     })
-                    //console.warn(this.state.weatherCode);
+                    console.warn(this.state.weatherCode);
                 }).catch((error) => {
                     //alert(error.message);
                 });
