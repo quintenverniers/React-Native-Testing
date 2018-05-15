@@ -100,7 +100,7 @@ export default class Dashboard extends React.Component {
                     this.setState({
                         weatherCode: res.weather[0].id, //weather code
                     })
-                    console.warn(this.state.weatherCode);
+                    //console.warn(this.state.weatherCode);
                 }).catch((error) => {
                     //alert(error.message);
                 });
@@ -136,7 +136,6 @@ export default class Dashboard extends React.Component {
         // calculation in Helper
         let sportMoments = getSportMoment(this.state.running, this.state.weatherCode, this.state.fitness, this.state.gymCount, this.state.swimming, this.state.poolCount, this.state.moment, this.state.startMoment, this.state.endMoment);
         //console.warn(sportMoments);
-        let data = new Date();
         return (
             <View style={styles.container}>
                 <StatusBar

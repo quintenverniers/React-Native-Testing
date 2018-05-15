@@ -19,7 +19,8 @@ export default class VenueDetailGyms extends React.Component {
     }
 
     saveChanges(id) {
-        console.warn("saved"+id);
+        //push to database
+        //console.warn("saved"+id);
     }
 
     componentDidMount() {

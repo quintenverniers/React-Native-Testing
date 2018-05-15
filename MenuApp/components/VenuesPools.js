@@ -60,7 +60,7 @@ export default class VenuesPools extends React.Component {
         const { navigation } = this.props;
         const cat = navigation.getParam('CategoryID', '0');
         const type = navigation.getParam('Type');
-        console.warn(type);
+        //console.warn(type);
 
         requestLocationPermission();
         navigator.geolocation.getCurrentPosition((position) => {
