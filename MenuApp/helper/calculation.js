@@ -159,7 +159,7 @@ export const getSportMoment = (running, weatherCode, fitness, gymCount, swimming
                 }
             }
 
-            //gymMoment is empty if it doesn't fit between the set hours
+            //swimMoment is empty if it doesn't fit between the set hours
             if (swimMomentTime != '') {
                 if ((!(swimMomentStart < startTimeHour)) && (!(swimMomentEnd > endTimeHour))) {
                     //if sportmoments already has moment
