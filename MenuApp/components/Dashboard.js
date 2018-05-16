@@ -100,7 +100,7 @@ export default class Dashboard extends React.Component {
                     this.setState({
                         weatherCode: res.weather[0].id, //weather code
                     })
-                    //console.warn(this.state.weatherCode);
+                    console.warn(this.state.weatherCode);
                 }).catch((error) => {
                     //alert(error.message);
                 });
