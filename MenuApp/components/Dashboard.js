@@ -72,6 +72,17 @@ export default class Dashboard extends React.Component {
         } else {
             // if moment isn't specified
             // moment: current time"zone"
+            let d = new Date();
+            let curHour = d.getHours();
+            //if current time is in afternoon
+            if(curHour < 24 && curHour > 12){
+                //set start & end hours
+                startHour = '13:00';
+                endHour = '23:00';
+            } else {
+                startHour = '1:00';
+                endHour = '12:00';
+            }
         }
 
         if(startHour == '' || startHour == null){
@@ -111,7 +122,7 @@ export default class Dashboard extends React.Component {
         if (this.state.swimming) {
             //get pool from db
             //in firebase "then clause --> set poolID to value from db"
-            poolID = '575ef2e9498e19229bfc0df8';
+            poolID = '575ef2e9498e19229bfc0df8'; 
             //get amount of people at this venue
             places.getHereNow(poolID).then((res) => {
                 this.setState({
@@ -128,7 +139,7 @@ export default class Dashboard extends React.Component {
                     gymCount: res.response.hereNow.count,
                 })
             });
-            //get amount of people at this venue
+            // get amount of people at this venue
         }
     }
 
